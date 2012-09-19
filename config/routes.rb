@@ -1,5 +1,11 @@
 Footnotes::Application.routes.draw do
+  get "user/create_username"
+
+  get "user/my_page"
+
   root to: 'home#default'
+  resource :session, :controller => :session
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

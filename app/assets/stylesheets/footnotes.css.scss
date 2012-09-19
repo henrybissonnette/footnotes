@@ -1,52 +1,80 @@
 
 /******************
-* Header
+* Body
 ******************/
 
 .body, .html{
   margin:auto;
   text-align: center;
-}
-
-.container{
   font-family: Arial, Sans-Serif;
+  text-align:center;
   color:#222;
 }
+
+/******************
+* Header
+******************/
 
 .pusher{
   clear: both;
 }
 
 .navbar{
-
+  min-width:600px;
   position:center;  margin: -10px;
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #204080;
   text-color: white;
-  .logo{
-    font-size: 50px;
-    float:left;
-    a:hover{
-      text-decoration:none;
+  .header-container{
+    margin:auto;
+    max-width:900px;
+    .logo{
+      font-weight: bold;
+      font-size: 50px;
+      float:left;
+      a:hover{
+        text-decoration:none;
+      }
     }
-  }
-  ul{
-    margin:0px;
-    margin-top:25px;
-    float:right;
-    li{
-      padding:5px;
-      list-style: none;
-      display: inline;
+    ul{
+      margin:0px;
+      margin-top:25px;
+      float:right;
+      li{
+        padding:5px;
+        list-style: none;
+        display: inline;
+      }
     }
-  }
-  a{
-    color: white;
-    text-decoration: none;
-    &:hover{
-      text-decoration:underline;
+    a{
+      color: white;
+      text-decoration: none;
+      &:hover{
+        text-decoration:underline;
+      }
     }
   }
 }
+
+/******************
+* Body Center
+******************/
+
+.container{
+  margin:auto;
+  max-width:900px;
+  min-width: 600px;
+}
+
+/******************
+* Footnote
+******************/
+
+.footnote{
+  border:solid 1px grey;
+}
+
+
+
