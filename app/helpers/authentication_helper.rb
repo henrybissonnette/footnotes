@@ -1,10 +1,11 @@
 module AuthenticationHelper
+  # TODO move signed in functionality to current user
   def signed_in?
-    !session[:user_id].nil?
+    User.exists?(session[:user_id])
   end
   
   def current_user
-    @current_user ||= User.find(session[:user_id])
+    @current_user ||= User.find(session[:user_id]) if signed_in?
   end
   
   def ensure_signed_in
