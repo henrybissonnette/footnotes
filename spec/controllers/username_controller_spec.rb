@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe UserController do
+describe UsernameController do
 
-  describe "GET 'create_username'" do
+  describe "GET 'new'" do
     it "returns http success" do
-      get 'create_username'
+      get 'new'
       response.should be_success
     end
   end
 
-  describe "GET 'my_page'" do
+  describe "GET 'post'" do
     it "returns http success" do
-      get 'my_page'
+      get 'post'
       response.should be_success
     end
   end

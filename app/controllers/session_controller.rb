@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-  skip_before_filter :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token, :has_username
   
   def new
     response.headers['WWW-Authenticate'] = Rack::OpenID.build_header(
@@ -19,7 +19,8 @@ class SessionController < ApplicationController
         if !user 
           User.create!(:identifier_url => openid.display_identifier,
                               :email => ax.get_single('http://axschema.org/contact/email'))
-          session[:redirect_to] = create_username_path
+          session[:redirect_to] = new_username_path
+        end
         #user ||= User.create!(:identifier_url => openid.display_identifier,
         #                      :email => ax.get_single('http://axschema.org/contact/email'))
         session[:user_id] = user.id
@@ -33,6 +34,7 @@ class SessionController < ApplicationController
   end
   
   def destroy
+    debugger
     session[:user_id] = nil
     redirect_to root_path
   end

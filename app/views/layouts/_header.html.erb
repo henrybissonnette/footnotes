@@ -5,9 +5,16 @@
     </div>
     <nav>
       <ul class="nav pull-right">
-        <li><%= link_to "Home",    '#' %></li>
-        <li><%= link_to "Help",    '#' %></li>
-        <li><%= link_to "Sign in", new_session_path %></li>
+        <li>
+          <% if signed_in? %>
+          signed in as <%= current_user.username %>
+          <% else %>
+          you are not logged in
+          <% end %>
+        </li>
+        <li><%= link_to "Home",    root_path %></li>
+        <li><%= link_to "Help",    help_path %></li>
+        <li><%= make_login_link %></li>
       </ul>
     </nav>
   </div>

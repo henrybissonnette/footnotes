@@ -1,9 +1,8 @@
 Footnotes::Application.routes.draw do
-  get "user/create_username"
-
-  get "user/my_page"
-
   root to: 'home#default'
+
+  match '/help', to: 'help#base'
+  resources :usernames, only: [:new, :create]
   resource :session, :controller => :session
 
 
