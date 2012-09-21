@@ -1,5 +1,9 @@
 Footnotes::Application.routes.draw do
 
+  get "user/create"
+
+  get "user/edit"
+
   get "static_pages/help"
 
   root to: 'home#default'
