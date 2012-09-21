@@ -16,15 +16,10 @@ class SessionController < ApplicationController
       when :success
         ax = OpenID::AX::FetchResponse.from_success_response(openid)
         user = User.where(:identifier_url => openid.display_identifier).first
-        if !user 
-          User.create!(:identifier_url => openid.display_identifier,
-                              :email => ax.get_single('http://axschema.org/contact/email'))
-          session[:redirect_to] = new_username_path
-        end
-        #user ||= User.create!(:identifier_url => openid.display_identifier,
-        #                      :email => ax.get_single('http://axschema.org/contact/email'))
+        user ||= User.create!(:identifier_url => openid.display_identifier,
+                             :email => ax.get_single('http://axschema.org/contact/email'))
         session[:user_id] = user.id
-        redirect_to(session[:redirect_to] || root_path)        
+        redirect_to(session[:redirect_to] || root_path) 
       when :failure
         render :action => 'problem'
       end
@@ -36,6 +31,6 @@ class SessionController < ApplicationController
   def destroy
     debugger
     session[:user_id] = nil
-    redirect_to root_path
+    redirect_to(session[:redirect_to] || root_path)
   end
 end

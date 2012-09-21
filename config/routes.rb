@@ -1,7 +1,10 @@
 Footnotes::Application.routes.draw do
+
+  get "static_pages/help"
+
   root to: 'home#default'
 
-  match '/help', to: 'help#base'
+  match '/help', to: 'static_pages#help'
   resources :usernames, only: [:new, :create]
   resource :session, :controller => :session
 

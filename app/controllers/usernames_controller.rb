@@ -1,6 +1,6 @@
 class UsernamesController < ApplicationController
-  before_filter :signed_in
-  skip_before_filter :has_username
+  before_filter :signed_in?
+  skip_before_filter :username_check?
 
 
   def new

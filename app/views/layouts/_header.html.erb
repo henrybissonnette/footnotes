@@ -1,3 +1,5 @@
+<% session[:redirect_to]=request.env['PATH_INFO'] %>
+
 <header class="navbar">
   <div class="header-container">
     <div class="logo">
@@ -6,7 +8,7 @@
     <nav>
       <ul class="nav pull-right">
         <li>
-          <% if signed_in? %>
+          <% if signed_in? && current_user.has_username? %>
           signed in as <%= current_user.username %>
           <% else %>
           you are not logged in
