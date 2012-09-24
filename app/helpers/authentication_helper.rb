@@ -18,4 +18,10 @@ module AuthenticationHelper
       redirect_to(new_session_path)
     end
   end
+
+  def nonuser_bounce
+    unless signed_in?
+      redirect_to(root_url)
+    end
+  end
 end

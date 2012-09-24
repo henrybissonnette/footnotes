@@ -7,15 +7,13 @@
     </div>
     <nav>
       <ul class="nav pull-right">
-        <li>
-          <% if signed_in? && current_user.has_username? %>
-          signed in as <%= current_user.username %>
-          <% else %>
-          you are not logged in
-          <% end %>
-        </li>
         <li><%= link_to "Home",    root_path %></li>
         <li><%= link_to "Help",    help_path %></li>
+        <li>
+          <% if signed_in? && current_user.has_username? %>
+          | <%= link_to current_user.username, user_path(current_user) %>
+          <% end %>
+        </li>
         <li><%= make_login_link %></li>
       </ul>
     </nav>

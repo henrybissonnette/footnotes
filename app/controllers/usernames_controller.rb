@@ -1,5 +1,5 @@
 class UsernamesController < ApplicationController
-  before_filter :signed_in?
+  before_filter :nonuser_bounce
   skip_before_filter :username_check?
 
 

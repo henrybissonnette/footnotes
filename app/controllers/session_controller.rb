@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :has_username
+  skip_before_filter :verify_authenticity_token, :username_check?
   
   def new
     response.headers['WWW-Authenticate'] = Rack::OpenID.build_header(

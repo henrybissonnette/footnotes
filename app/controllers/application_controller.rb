@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
 
   def username_check?
     if signed_in? && !current_user.has_username?
-      redirect_to(new_username_path)
+      #redirect_to(new_username_path)
+      redirect_to(first_edit_user_path(current_user))
     end
   end
 end

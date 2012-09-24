@@ -1,14 +1,14 @@
 Footnotes::Application.routes.draw do
 
-  get "user/create"
-
-  get "user/edit"
-
-  get "static_pages/help"
-
   root to: 'home#default'
 
   match '/help', to: 'static_pages#help'
+  match '/page/:external_url', to: 'overlay#view'
+  resources :users do
+    member do
+      get 'first_edit'
+    end
+  end
   resources :usernames, only: [:new, :create]
   resource :session, :controller => :session
 

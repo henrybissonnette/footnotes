@@ -1,0 +1,8 @@
+<h1>User#edit</h1>
+<h1>Create a Username</h1>
+<p>withFootnotes requires you to create a unique username to associate with your footnotes and other actions on the site.</p>
+<%= form_for @user do %>
+  <%= label_tag(:username, "Username:") %>
+  <%= text_field_tag(:username) %>
+  <%= submit_tag("Go") %>
+<% end %>
