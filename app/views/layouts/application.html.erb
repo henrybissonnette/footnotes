@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Footnotes <%= yield(:title) %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
+<%= render 'layouts/head' %>
 <body>
-  <%= render 'layouts/header' %> 
-  <div class='container'>
+  <%= render 'layouts/header' %>
+  <div class='container <%= 'full_width' if use_full_width %>' >
     <%= yield %>
 
     <%= debug(params) if Rails.env.development? %>

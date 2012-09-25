@@ -92,6 +92,7 @@ h1,h2,h3,h4,h5,h6{
 .container{
   margin:auto;
   height: 100%;
+  max-width:$pageWidth;
   min-width:$pageWidth;
 }
 
@@ -143,5 +144,13 @@ h1,h2,h3,h4,h5,h6{
   padding-left:20px;
   border: solid 1px #ccd;
   @include soft_corners;
+}
+
+/******************
+* Dynamic Classing
+******************/
+
+.full_width{
+  max-width: none;
 }
 
