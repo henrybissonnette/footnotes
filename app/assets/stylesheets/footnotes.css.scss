@@ -1,4 +1,15 @@
+/******************
+* Colors
+******************/
+
 $footnotesBlue: #204080;
+
+/******************
+* Dimensions
+******************/
+
+$pageWidth: 900px;
+$overlayHeight:1000px; 
 
 /******************
 * Mixins
@@ -19,6 +30,7 @@ $footnotesBlue: #204080;
   font-family: Arial, Sans-Serif;
   text-align:center;
   color:#222;
+  height: 100%;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -34,16 +46,17 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .navbar{
-  min-width:600px;
+  min-width:$pageWidth;
   position:center;  margin: -10px;
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
   background-color: $footnotesBlue;
+  margin-bottom: 50px;
   color: white;
   .header-container{
     margin:auto;
-    max-width:900px;
+    max-width:$pageWidth;
     .logo{
       font-weight: bold;
       font-size: 50px;
@@ -78,8 +91,29 @@ h1,h2,h3,h4,h5,h6{
 
 .container{
   margin:auto;
-  max-width:900px;
-  min-width: 600px;
+  height: 100%;
+  min-width:$pageWidth;
+}
+
+/*******************
+* Overlay
+*******************/
+
+#focal_item{
+  width:75%;
+  margin-top: 40px;
+  height: $overlayHeight;
+  @include soft_corners;
+}
+
+.right_bar{
+  .contents{
+    height: $overlayHeight - 50px;
+    overflow:scroll;
+  }
+  float: right;
+  height: $overlayHeight;
+  width:20%;
 }
 
 /******************

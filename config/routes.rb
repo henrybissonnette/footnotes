@@ -1,9 +1,8 @@
 Footnotes::Application.routes.draw do
 
   root to: 'home#default'
-
   match '/help', to: 'static_pages#help'
-  match '/page/:external_url', to: 'overlay#view'
+  match '/overlay', to: 'overlay#view'
   resources :users do
     member do
       get 'first_edit'
