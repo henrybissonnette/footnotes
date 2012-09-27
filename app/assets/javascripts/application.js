@@ -12,4 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require(remove)_tree .
+//= require_tree .

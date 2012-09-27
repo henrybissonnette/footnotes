@@ -5,7 +5,11 @@
  <%= @topic %> |
 <% end %>
 <% content_for :scripts do %>
+<%
+=begin %>
   <%= javascript_include_tag :overlay %>
+<%
+=end %>
 <% end %>
 
 
