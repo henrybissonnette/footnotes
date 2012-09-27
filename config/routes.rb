@@ -3,12 +3,12 @@ Footnotes::Application.routes.draw do
   root to: 'home#default'
   match '/help', to: 'static_pages#help'
   match '/overlay', to: 'overlay#view'
+  match '/overlay/proxy', to: 'overlay#proxy'
   resources :users do
     member do
       get 'first_edit'
     end
   end
-  resources :usernames, only: [:new, :create]
   resource :session, :controller => :session
 
 

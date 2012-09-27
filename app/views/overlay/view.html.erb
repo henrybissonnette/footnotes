@@ -1,22 +1,25 @@
 
 
 <% use_full_width true %>
-
+<% content_for :topic do %>
+ <%= @topic %> |
+<% end %>
+<% content_for :scripts do %>
+  <%= javascript_include_tag :overlay %>
+<% end %>
 
 
 <div class="right_bar">
-<h1>Footnotes</h1>
-<div class="contents">
-<% 10.times do %>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
-<% end %>
+  <h1>Footnotes</h1>
+  <div class="contents">
+    <% 10.times do %>
+    <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <% end %>
+  </div>
 </div>
 
-
-</div>
-
-<iframe id="focal_item" src="<%= @external_url %>"></iframe>
+<iframe id="focal_item" src="/overlay/proxy?external_url=<%= @external_url %>"></iframe>
 
 <div class="pusher"></div>

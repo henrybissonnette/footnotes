@@ -51,8 +51,8 @@ h1,h2,h3,h4,h5,h6{
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom:20px;
   background-color: $footnotesBlue;
-  margin-bottom: 50px;
   color: white;
   .header-container{
     margin:auto;
@@ -101,8 +101,9 @@ h1,h2,h3,h4,h5,h6{
 *******************/
 
 #focal_item{
+  border-top:none;
+  margin-left:-10px;
   width:75%;
-  margin-top: 40px;
   height: $overlayHeight;
   @include soft_corners;
 }
