@@ -12,13 +12,15 @@ class OverlayController < ApplicationController
 
   def proxy
     @external_url = params[:external_url]
-    @external_url ||= 'http://en.wikipedia.org/wiki/Apple'    
-    @doc = Nokogiri::HTML(open(@external_url))
-    @links = []
-    @doc.css('a').each do |link|
-      link['href'] = localize_link(link['href'])
+    @external_url ||= 'http://en.wikipedia.org/wiki/Apple'
+    if params[:from_click] != 'true'    
+      @doc = Nokogiri::HTML(open(@external_url))
+      @links = []
+      @doc.css('a').each do |link|
+        link['href'] = localize_link(link['href'])
+      end
+      @doc.to_html
     end
-    @doc.to_html
   end
 
   def resolve_layout
@@ -32,7 +34,7 @@ class OverlayController < ApplicationController
 
   def localize_link(href)
     domain = @external_url.match(%r"((?:https?://)?[a-z\d.]+)/.*")[1]
-    pre_string = '/overlay/proxy?external_url='
+    pre_string = '/overlay/proxy?from_click=true&external_url='
 
     destination = case href
     when %r"//.*"
