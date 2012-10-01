@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-
+require 'uri'
 
 class HtmlLinkLocalizer
   attr_accessor :html
@@ -8,7 +8,7 @@ class HtmlLinkLocalizer
   def initialize(html,local_url,external_url)
     @input_html = html
     @local_url = local_url
-    @external_url = external_url
+    @external_url = add_http(external_url)
   end
 
   def get_localized_html
@@ -38,8 +38,16 @@ class HtmlLinkLocalizer
   end
 
   def localize_href(href)
-    href = add_http(href)
+    href = make_absolute(href)
     @local_url+href
+  end
+
+  def make_absolute(href)
+    if is_relative?(href)
+      uri = URI.new(@external_url)
+      href = uri+href
+    end
+    href
   end
 
   def each_href
