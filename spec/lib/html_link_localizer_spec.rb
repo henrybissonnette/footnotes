@@ -9,7 +9,7 @@ describe HtmlLinkLocalizer do
     @external_url = 'www.domain.com'
     @html = '<a href="http://www.google.com">google</a>'
     @localizer = HtmlLinkLocalizer.new(@html,@local_string,@external_url)
-    @localizer.should_receive(:open).with(@external_url).and_return(@html) 
+    @localizer.should_receive(:open).and_return(@html) 
     expected = %Q{#{@local_string}http://www.google.com}
     @localizer.get_localized_html.should include(expected)
   end
@@ -20,7 +20,7 @@ describe HtmlLinkLocalizer do
      <a href="www.bliterati.com">google</a> 
      <a href="//www.economist.com/business">google</a>}
     @localizer = HtmlLinkLocalizer.new(@html,@local_string,@external_url)
-    @localizer.should_receive(:open).with(@external_url).and_return(@html) 
+    @localizer.should_receive(:open).and_return(@html) 
     expected = [
       %Q{#{@local_string}http://www.google.com},
       %Q{#{@local_string}http://www.bliterati.com},
@@ -35,7 +35,7 @@ describe HtmlLinkLocalizer do
      <a href="thisgetstackedon/next/further">google</a> 
      <a href="#groupon">more about groupon</a>}
     @localizer = HtmlLinkLocalizer.new(@html,@local_string,@external_url)
-    @localizer.should_receive(:open).with(@external_url).and_return(@html) 
+    @localizer.should_receive(:open).and_return(@html) 
     expected = [
       %Q{#{@local_string}http://www.domain.com/here/there},
       %Q{#{@local_string}http://www.domain.com/first/thisgetstackedon/next/further},

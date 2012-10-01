@@ -39,6 +39,7 @@ class HtmlLinkLocalizer
 
   def localize_href(href)
     href = make_absolute(href)
+    href = add_http(href)
     @local_url+href
   end
 
