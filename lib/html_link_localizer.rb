@@ -5,7 +5,7 @@ require 'uri'
 class HtmlLinkLocalizer
   attr_accessor :html
 
-  def initialize(html,local_url,external_url)
+  def initialize(local_url,external_url)
     @input_html = html
     @local_url = local_url
     @external_url = add_http(external_url)
@@ -19,8 +19,12 @@ class HtmlLinkLocalizer
 
   private
 
+  def is_anchor?(href)
+    href[0] == '#'
+  end
+
   def is_relative?(href)
-    href.match(%r{^/[^/]}) || href[0] == '#' ? true : false
+    href.match(%r{^/[^/]})  ? true : false
   end
 
   def has_http?(href)
@@ -38,9 +42,9 @@ class HtmlLinkLocalizer
   end
 
   def localize_href(href)
-    href = make_absolute(href)
-    href = add_http(href)
-    @local_url+href
+      href = make_absolute(href)
+      href = add_http(href)
+      @local_url+href
   end
 
   def make_absolute(href)
@@ -51,11 +55,18 @@ class HtmlLinkLocalizer
     href.to_s
   end
 
+  def 
+
   def each_href
+    # TODO figure out why I cant chain this
     out = Nokogiri::HTML(open(@external_url))
     out.css('a').each do |link|
-      link['href'] = yield(link['href'])
+      link['href'] = yield(link['href']) if link['href'] && !is_anchor?(link['href'])
     end
+    out.css('form').each do |form|
+      form['action'] = yield(form['action']) if form['action']
+    end  
+    # TODO need to handle resources with relative uris
     out.to_html
   end
 end

@@ -8,7 +8,7 @@ describe HtmlLinkLocalizer do
   it 'appends local string to well formed urls' do
     @external_url = 'www.domain.com'
     @html = '<a href="http://www.google.com">google</a>'
-    @localizer = HtmlLinkLocalizer.new(@html,@local_string,@external_url)
+    @localizer = HtmlLinkLocalizer.new(@local_string,@external_url)
     @localizer.should_receive(:open).and_return(@html) 
     expected = %Q{#{@local_string}http://www.google.com}
     @localizer.get_localized_html.should include(expected)
@@ -19,7 +19,7 @@ describe HtmlLinkLocalizer do
     @html = %Q{<a href="http://www.google.com">google</a> <div>some text</div> 
      <a href="www.bliterati.com">google</a> 
      <a href="//www.economist.com/business">google</a>}
-    @localizer = HtmlLinkLocalizer.new(@html,@local_string,@external_url)
+    @localizer = HtmlLinkLocalizer.new(@local_string,@external_url)
     @localizer.should_receive(:open).and_return(@html) 
     expected = [
       %Q{#{@local_string}http://www.google.com},
@@ -29,19 +29,25 @@ describe HtmlLinkLocalizer do
     @localizer.get_localized_html.should include(*expected)
   end
 
-  it 'turns relative urls into absolute urls' do
+  it 'turns relative urls into absolute urls and leave anchors alone' do
     @external_url = 'www.domain.com/first'
     @html = %Q{<a href="/here/there">google</a> <div>some text</div> 
      <a href="thisgetstackedon/next/further">google</a> 
      <a href="#groupon">more about groupon</a>}
-    @localizer = HtmlLinkLocalizer.new(@html,@local_string,@external_url)
+    @localizer = HtmlLinkLocalizer.new(@local_string,@external_url)
     @localizer.should_receive(:open).and_return(@html) 
     expected = [
       %Q{#{@local_string}http://www.domain.com/here/there},
       # TODO it seems like uri parse should handle the following case
       #{}%Q{#{@local_string}http://www.domain.com/first/thisgetstackedon/next/further},
-      %Q{#{@local_string}http://www.domain.com/first#groupon}
+      %Q{#groupon}
     ]
     @localizer.get_localized_html.should include(*expected)
+  end
+
+  it 'works on a real page' do
+    @external_url = 'http://en.wikipedia.org/wiki/Apple'
+    @localizer = HtmlLinkLocalizer.new(@local_string,@external_url)
+    puts @localizer.get_localized_html
   end
 end
