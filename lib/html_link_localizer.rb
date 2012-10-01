@@ -45,10 +45,10 @@ class HtmlLinkLocalizer
 
   def make_absolute(href)
     if is_relative?(href)
-      uri = URI.new(@external_url)
+      uri = URI.parse(@external_url)
       href = uri+href
     end
-    href
+    href.to_s
   end
 
   def each_href
