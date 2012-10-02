@@ -1,0 +1,3 @@
+class Footnotes < ApplicationController
+
+end

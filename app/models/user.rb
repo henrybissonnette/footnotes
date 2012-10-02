@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates :username, length: {maximum: 50}
   validates :email, presence: true
   validates :identifier_url, presence: true
+  has_many :footnotes, :class_name => MetaNote, :foreign_key => 'creator_id'
   
   def has_username? # does console have to be restarted for changes to register?  
     !self.username.nil?
