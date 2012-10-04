@@ -55,8 +55,6 @@ class HtmlLinkLocalizer
     href.to_s
   end
 
-  def 
-
   def each_href
     # TODO figure out why I cant chain this
     out = Nokogiri::HTML(open(@external_url))
@@ -66,7 +64,7 @@ class HtmlLinkLocalizer
     out.css('form').each do |form|
       form['action'] = yield(form['action']) if form['action']
     end  
-    # TODO need to handle resources with relative uris
+    # TODO need to handle resources and forms with relative uris
     out.to_html
   end
 end
