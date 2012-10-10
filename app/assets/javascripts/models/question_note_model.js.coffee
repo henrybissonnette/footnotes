@@ -5,7 +5,3 @@ window.footnotes.QuestionNoteModel = class QuestionNoteModel extends Backbone.Mo
     content: "This note has not content!?"
     authorName: "Unknown Author"
     type: "question"
-
-hello = "hello"
-# $ ->
-#   alert "hello"

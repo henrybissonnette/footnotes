@@ -14,5 +14,8 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require mustache
 //= require init
+//= require hogan.js
 //= require_tree .
+//= require_tree ./templates
