@@ -24,19 +24,19 @@ class HtmlLinkLocalizer
   end
 
   def is_relative?(href)
-    href.match(%r{^/[^/]})  ? true : false
+     !!href.match(%r{^/[^/]})
   end
 
   def has_http?(href)
-    href.match(%r{^https?://}) ? true : false
+    !!href.match(%r{^https?://})
   end
 
   def add_http(href)
     if !is_relative?(href) && !has_http?(href)
       if !(href[0,2] == '//')
-        href ='//'+href
+        href ='//' + href
       end
-      href = 'http:'+href
+      href = 'http:' + href
     end
     href
   end
@@ -44,13 +44,13 @@ class HtmlLinkLocalizer
   def localize_href(href)
       href = make_absolute(href)
       href = add_http(href)
-      @local_url+href
+      @local_url + href
   end
 
   def make_absolute(href)
     if is_relative?(href)
       uri = URI.parse(@external_url)
-      href = uri+href
+      href = uri + href
     end
     href.to_s
   end

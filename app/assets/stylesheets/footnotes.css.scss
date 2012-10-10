@@ -138,6 +138,10 @@ h1,h2,h3,h4,h5,h6{
     }  
 }
 
+.clickable:hover {
+  cursor:pointer;
+}
+
 .debug_dump {
   background-color:#f9f9ff;
   margin-top:60px;
