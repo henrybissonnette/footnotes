@@ -9,6 +9,8 @@ Footnotes::Application.routes.draw do
   match '/overlay', to: 'overlay#view'
   match '/overlay/proxy', to: 'overlay#proxy'
 
+  resources :question_notes
+
   resources :users do
     member do
       get 'first_edit'

@@ -20,6 +20,10 @@ $overlayHeight:1000px;
   border-radius: 5px;
 }
 
+@mixin clickable {
+  cursor:pointer;
+}
+
 /******************
 * Body
 ******************/
@@ -35,6 +39,14 @@ $overlayHeight:1000px;
 
 h1,h2,h3,h4,h5,h6{
   color:#225
+}
+
+button,  {
+  @include clickable;
+}
+
+textarea,input[type=text]{
+  width:100%;
 }
 
 /******************
@@ -110,6 +122,7 @@ h1,h2,h3,h4,h5,h6{
 
 .right_bar{
   .contents{
+    padding-right:20px;
     height: $overlayHeight - 50px;
     overflow:scroll;
   }
@@ -119,11 +132,20 @@ h1,h2,h3,h4,h5,h6{
 }
 
 /******************
+* Note Lists
+******************/
+
+.notes{
+
+}
+
+/******************
 * Footnote
 ******************/
 
 .footnote{
   border:solid 1px grey;
+  @include soft_corners
 }
 
 /******************
@@ -136,6 +158,16 @@ h1,h2,h3,h4,h5,h6{
     color:red;
     list-style:none;
     }  
+}
+
+.boxsizingBorder {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.resize_vertical{
+  resize:vertical;
 }
 
 .clickable:hover {

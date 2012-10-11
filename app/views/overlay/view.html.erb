@@ -5,25 +5,18 @@
  <%= @topic %> |
 <% end %>
 <% content_for :scripts do %>
-<%
-=begin %>
-  <%= javascript_include_tag :overlay %>
-<%
-=end %>
+  <%= javascript_tag do %>
+    $(function() {
+      Footnotes.Overlay.init();
+    });
+  <% end %>
 <% end %>
 
 
 <div class="right_bar">
   <h1>Footnotes</h1>
-  <div id="example">
-    <p>Click me!</p> 
-  </div>
-  <div class="contents">
-    <% 10.times do %>
-    <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-    <% end %>
+  <div id="footnotes" class="contents">
+
   </div>
 </div>
 

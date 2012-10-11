@@ -17,7 +17,6 @@ class QuestionNote < ActiveRecord::Base
     else
       self.meta = self.build_meta(attr)
     end
-    save
   end
 
   def subject_url
