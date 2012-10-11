@@ -2,7 +2,7 @@ Footnotes::Application.routes.draw do
 
   root to: 'home#default'
 
-  match '/ajax/overlay', to: 'overlay#ajax'
+  match '/footnotes/get', to: 'footnotes#get_page_notes'
 
   match '/help', to: 'static_pages#help'
 

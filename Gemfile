@@ -21,6 +21,7 @@ end
 
 gem 'jquery-rails'
 gem 'hogan_assets'
+gem 'debugger'
 
 group :test do
   gem 'capybara', '1.1.2'

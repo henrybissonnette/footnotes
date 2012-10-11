@@ -6,7 +6,14 @@ window.Footnotes.Models.Question = class Question extends Backbone.Model
     type: "question"
 
   urlRoot:
-    '/questionNote'
+    '/question_notes'
 
 Footnotes.Collections.Questions = Backbone.Collection.extend
+  url: ->
+    '/footnotes/get' + location.search
+
   model: Footnotes.Models.Question
+
+  parse: (data) ->
+    alert data
+    data
