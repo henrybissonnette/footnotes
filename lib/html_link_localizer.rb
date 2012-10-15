@@ -57,7 +57,10 @@ class HtmlLinkLocalizer
 
   def each_href
     # TODO figure out why I cant chain this
-    out = Nokogiri::HTML(open(@external_url))
+    
+    external = open(@external_url)
+    out = Nokogiri::HTML(external)
+
     out.css('a').each do |link|
       link['href'] = yield(link['href']) if link['href'] && !is_anchor?(link['href'])
     end

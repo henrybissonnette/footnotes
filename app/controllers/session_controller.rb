@@ -29,7 +29,6 @@ class SessionController < ApplicationController
   end
   
   def destroy
-    debugger
     session[:user_id] = nil
     redirect_to(session[:redirect_to] || root_path)
   end

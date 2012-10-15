@@ -12,13 +12,6 @@ class OverlayController < ApplicationController
     @external_url ||= 'http://en.wikipedia.org/wiki/Apple'
   end
 
-  def ajax
-    @request = params[:ajax_request]
-    if @request  == "init"
-      load_footnotes
-    end
-  end  
-
   def view
     @topic = @external_url.match(%r{.*/([^/]+)/?})[1]
   end
@@ -36,16 +29,6 @@ class OverlayController < ApplicationController
   end
 
   private
-
-  def load_footnotes
-    question = QuestionNote.new(content: "question content")
-    question.set_meta subject_url: @external_url
-    question.content = "server content" 
-    question.save
-    questions = QuestionNote.joins(:meta).where(:meta_notes =>{:subject_url => @external_url})
-    json = ActiveSupport::JSON.encode(questions)
-    render json: json
-  end
 
   def resolve_layout
     case action_name

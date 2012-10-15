@@ -11,4 +11,10 @@ class User < ActiveRecord::Base
   def has_username? # does console have to be restarted for changes to register?  
     !self.username.nil?
   end
+
+  def to_json
+    {
+      username: username
+    }
+  end
 end

@@ -1,15 +1,17 @@
-require 'footnote_module'
 
 class QuestionNote < ActiveRecord::Base
   include FootnoteModule
-  # receives magic attribute meta from module 
   has_one :meta, :class_name => 'MetaNote', 
         :foreign_key => 'note_id',
         :autosave => true,
         :dependent => :destroy
   attr_accessible :content
-  after_create :set_meta
   self.validate :has_subject_url
+
+  def initialize(args = nil)
+    super
+    set_meta
+  end
 
   def set_meta(attr={})
     if self.meta
@@ -19,11 +21,14 @@ class QuestionNote < ActiveRecord::Base
     end
   end
 
-  def subject_url
-    meta.subject_url
+  def to_json
+    out = {
+      id: id,
+      content: content,
+      title: title,
+      noteType: note_type,
+      creatorName: creator
+    }
   end
 
-  def has_subject_url
-    !!meta.subject_url
-  end
 end

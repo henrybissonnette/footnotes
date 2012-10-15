@@ -20,6 +20,11 @@ $overlayHeight:1000px;
   border-radius: 5px;
 }
 
+@mixin round_corners {
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
 @mixin clickable {
   cursor:pointer;
 }
@@ -120,15 +125,16 @@ textarea,input[type=text]{
   @include soft_corners;
 }
 
-.right_bar{
-  .contents{
-    padding-right:20px;
-    height: $overlayHeight - 50px;
-    overflow:scroll;
+#right_bar{
+  .new{
+    padding-right:10px;
+  }
+  .notes{
+    padding-right:10px;
   }
   float: right;
   height: $overlayHeight;
-  width:20%;
+  width:22%;
 }
 
 /******************
@@ -136,7 +142,7 @@ textarea,input[type=text]{
 ******************/
 
 .notes{
-
+  overflow:scroll;
 }
 
 /******************
@@ -144,8 +150,25 @@ textarea,input[type=text]{
 ******************/
 
 .footnote{
-  border:solid 1px grey;
-  @include soft_corners
+  margin:10px;
+  margin-left:0px;
+  padding: auto;
+  background-color:#f8f8fe;
+  border:1px solid white;
+  @include round_corners;
+  .title{
+    text-align:center;
+    background-color:#e0e0ff;
+    font-size:18px;
+    border-bottom:solid 3px white;;
+  }
+  *{
+    padding-left:10px;
+  }
+  .Q{
+    margin-right:10px;
+    font-size:20px;
+  }
 }
 
 /******************

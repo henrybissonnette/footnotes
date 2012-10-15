@@ -5,9 +5,6 @@
   <%= render 'layouts/header' %>
   <div class='container <%= 'full_width' if use_full_width %>' >
     <%= yield %>
-
-    <%= debug(params) if Rails.env.development? %>
-    <%= debug(':user_id: ' + session[:user_id].to_s) if Rails.env.development? %>
   </div>
 </body>
 </html>

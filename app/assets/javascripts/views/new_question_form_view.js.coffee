@@ -7,30 +7,28 @@ window.Footnotes.Views.NewQuestionFormView = Backbone.View.extend
     'click .open': 'openForm'
     'click .close': 'closeForm'
 
-  initialize: ->
-    form_open = false
+  initialize: (options) ->
+    @questions = options.questions
 
   render: ->
-    content = Footnotes.template('forms/newQuestionFormTemplate').render()
-    @$el.append content
-    submit = @$el.find 'input[type="submit"]'
-    submit.click (event) -> 
-      event.preventDefault()
+    @closeForm()
     return this
       
   closeForm: ->
     contents = Footnotes.template('newQuestion').render()
     @$el.html contents
-    @form_open = false
   
   openForm: ->
-    newDiv = @$el.find '.new'
-    @$el.html render()
-    @form_open = true
-
+    content = Footnotes.template('forms/newQuestionFormTemplate').render()
+    @$el.html content
+    submit = @$el.find 'input[type="submit"]'
+    submit.click (event) -> 
+      event.preventDefault()
 
   submit: ->
-    data = $('form').serializeArray()
-    @model = new Footnotes.Models.Question 
-    @model.save data
-    closeForm()
+    data = Footnotes.formToObj $('form')
+    data['external_url'] = Footnotes.Overlay.getExternalURL()
+    #@model = new Footnotes.Models.Question 
+    @questions.create data
+    #@model.save data
+    @closeForm()

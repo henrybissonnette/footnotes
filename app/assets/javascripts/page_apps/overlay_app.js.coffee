@@ -1,20 +1,17 @@
 Footnotes.Overlay = 
 
   init: ->
+    @questions = new Footnotes.Collections.Questions
+    @questions.fetch()
     @overlay = new Footnotes.Views.OverlayRightView
+      questions: @questions
     @overlay.render()
 
-  #   ajaxResponse = $.ajax
-  #     url: '/footnotes/get' + location.search
-  #     dataType:'json'
-  #     data:
-  #       ajax_request: 'init'
+  getExternalURL: ->
+    if not @external_url
+      query_string = location.search
+      @external_url = query_string.match(/&external_url=([^&]*)&?/)[1]
+    else 
+      @external_url
 
-    
-  #   ajaxResponse.done (pageData) ->
-  #     questionNotes =  new Footnotes.Collections.Questions pageData
-  #     noteListView = new Footnotes.Views.NoteListView
-  #       collection: questionNotes
-  #     container = $('#footnotes')
-  #     container.empty()
-  #     container.append(noteListView.render().el)
+
