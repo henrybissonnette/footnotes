@@ -1,6 +1,7 @@
 Footnotes.Overlay = 
 
   init: ->
+    @currentUser = new Footnotes.Models.User Footnotes.currentUser
     @questions = new Footnotes.Collections.Questions
     @questions.fetch()
     @overlay = new Footnotes.Views.OverlayRightView
@@ -10,7 +11,7 @@ Footnotes.Overlay =
   getExternalURL: ->
     if not @external_url
       query_string = location.search
-      @external_url = query_string.match(/&external_url=([^&]*)&?/)[1]
+      @external_url = query_string.match(/external_url=([^&]*)&?/)[1]
     else 
       @external_url
 

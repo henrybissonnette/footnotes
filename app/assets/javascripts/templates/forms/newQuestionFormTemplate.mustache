@@ -1,10 +1,14 @@
 <form>
-  <input size=28 type="text" name='title'
+  <input size=28 type="text" name='title' value="{{title}}"
   class=".boxsizingBorder" placeholder="Title"/>
   <textarea rows=5 columns=40 name="content" 
   class="resize_vertical .boxsizingBorder"
-  placeholder="Question"/><br/>
-  <input type="submit" value="ask" />
+  placeholder="Question">{{content}}</textarea>
+  <br/>
+  {{#id}}
+  <input type="hidden" name="id" value="{{id}}" />
+  {{/id}}
+  <input type="submit" value={{^id}}"ask"{{/id}}{{#id}}"submit"{{/id}} />
 </form>
-
+<button class="delete">delete</button>
 <button class="close">cancel</button>

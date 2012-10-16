@@ -3,7 +3,7 @@ window.Footnotes.Views.NewQuestionFormView = Backbone.View.extend
   el: '.new'
 
   events:
-    'click input[type="submit"]': 'submit'
+    'submit form': 'submit'
     'click .open': 'openForm'
     'click .close': 'closeForm'
 
@@ -20,15 +20,11 @@ window.Footnotes.Views.NewQuestionFormView = Backbone.View.extend
   
   openForm: ->
     content = Footnotes.template('forms/newQuestionFormTemplate').render()
-    @$el.html content
-    submit = @$el.find 'input[type="submit"]'
-    submit.click (event) -> 
-      event.preventDefault()
+    @$el.html content      
 
-  submit: ->
-    data = Footnotes.formToObj $('form')
+  submit: (event) ->
+    event.preventDefault()
+    data = Footnotes.formToObj @$('form')
     data['external_url'] = Footnotes.Overlay.getExternalURL()
-    #@model = new Footnotes.Models.Question 
     @questions.create data
-    #@model.save data
     @closeForm()

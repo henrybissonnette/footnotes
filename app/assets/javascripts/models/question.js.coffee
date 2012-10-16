@@ -4,6 +4,7 @@ window.Footnotes.Models.Question = class Question extends Backbone.Model
     content: 'content'
     noteType: 'noType'
     creatorName: 'anonymous'
+    canEdit: false
 
 
   urlRoot:
@@ -14,6 +15,3 @@ Footnotes.Collections.Questions = Backbone.Collection.extend
     '/question_notes' + location.search
 
   model: Footnotes.Models.Question
-
-  parse: (data) ->
-    data

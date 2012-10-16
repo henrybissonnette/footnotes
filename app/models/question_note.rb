@@ -1,7 +1,10 @@
 
+
 class QuestionNote < ActiveRecord::Base
   include FootnoteModule
-  has_one :meta, :class_name => 'MetaNote', 
+  has_one :meta, 
+        :as => :note,
+        :class_name => 'MetaNote', 
         :foreign_key => 'note_id',
         :autosave => true,
         :dependent => :destroy
@@ -27,7 +30,8 @@ class QuestionNote < ActiveRecord::Base
       content: content,
       title: title,
       noteType: note_type,
-      creatorName: creator
+      creatorName: creator_name,
+      externalURL: subject_url
     }
   end
 

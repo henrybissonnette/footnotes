@@ -1,4 +1,17 @@
+<% content_for :bootstrapData do %>
+  Footnotes.Home.recentNotes = <%= raw @recent_notes.to_json %>
+<% end %>
+
+<% content_for :scripts do %>
+  <%= javascript_tag do %>
+    $(function() {
+      Footnotes.Home.init();
+    });
+  <% end %>
+<% end %>
+
+<div id="recent_notes"></div>
 <h1>Welcome to withFootnotes</h1>
-<p>Footnotes is an application for attaching additional context to existing pages on the web. It's currently pre-pre-pre-beta and thus doesn't do anything.</p>
+<p>Footnotes is an application for attaching additional context to existing pages on the web. It's currently pre-pre-beta and thus doesn't do too much.</p>
 
 <%= link_to 'learn about apples', overlay_path %>

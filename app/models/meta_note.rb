@@ -16,7 +16,15 @@ class MetaNote < ActiveRecord::Base
   end
 
   def creator_name
-    creator.username
+    creator ? creator.username : 'anonymous'
+  end
+
+  def self.get_recent(number)
+    recent_meta = self.includes(:note).order("created_at desc").limit(number)
+    recent_meta.map! do |meta|
+      meta.note.to_json
+    end
+    recent_meta
   end
 
 end

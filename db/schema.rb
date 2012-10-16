@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002132556) do
+ActiveRecord::Schema.define(:version => 20121002134200) do
 
   create_table "footnotes", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(:version => 20121002132556) do
     t.datetime "updated_at",  :null => false
     t.integer  "note_id"
     t.string   "note_type"
+  end
+
+  create_table "meta_notes", :force => true do |t|
+    t.string   "title"
+    t.integer  "creator_id"
+    t.integer  "parent_id"
+    t.string   "subject_url"
+    t.integer  "note_id"
+    t.string   "note_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "question_notes", :force => true do |t|

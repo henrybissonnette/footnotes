@@ -1,3 +1,5 @@
+
+
 class User < ActiveRecord::Base
   attr_accessible :email, :username, :identifier_url
   validates_uniqueness_of :username
@@ -8,12 +10,13 @@ class User < ActiveRecord::Base
   validates :identifier_url, presence: true
   has_many :footnotes, :class_name => MetaNote, :foreign_key => 'creator_id'
   
-  def has_username? # does console have to be restarted for changes to register?  
+  def has_username? 
     !self.username.nil?
   end
 
   def to_json
     {
+      id: id,
       username: username
     }
   end

@@ -130,6 +130,7 @@ textarea,input[type=text]{
     padding-right:10px;
   }
   .notes{
+    overflow:scroll;
     padding-right:10px;
   }
   float: right;
@@ -142,7 +143,7 @@ textarea,input[type=text]{
 ******************/
 
 .notes{
-  overflow:scroll;
+  
 }
 
 /******************

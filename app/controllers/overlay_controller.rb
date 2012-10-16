@@ -9,7 +9,9 @@ class OverlayController < ApplicationController
   def init
     @from_click = params[:from_click]
     @external_url = params[:external_url]
-    @external_url ||= 'http://en.wikipedia.org/wiki/Apple'
+    if !@external_url
+      redirect_to('/overlay?external_url=http://en.wikipedia.org/wiki/Apple')
+    end
   end
 
   def view
