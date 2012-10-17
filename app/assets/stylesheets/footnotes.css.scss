@@ -54,6 +54,7 @@ $overlayHeight:1000px;
   text-align:center;
   color:#222;
   height: 100%;
+  margin-bottom:20px;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -148,8 +149,13 @@ button{
 
 #recent_notes{
   float:right;
-  width:350px;
+  width:280px;
   margin-left:20px;
+  height: $overlayHeight;
+  overflow:scroll;
+}
+#welcome{
+  margin-right:600px;
 }
 
 
@@ -211,11 +217,8 @@ button{
     }
   }
   .info{
-    // @include round_bottom;
     background-color:#e6e6ee;
     text-align:right;
-    // margin-left:10px;
-    // margin-right:10px;
     padding:0px;
     padding-right:5px;
     color:#889;
@@ -232,7 +235,9 @@ button{
   .minimized{
     @include round_corners;
   }
-
+  .content{
+    padding-bottom: 5px;
+  }
 }
 
 
