@@ -1,17 +1,17 @@
 
 
 <div class="title clickable">
-  {{title}}
+  <span class="text">{{title}}</span>
 </div>
 
 <div class="info">
   <span class="author">
-    {{creator_name}}
+    from {{creatorName}} at {{createdAt}}
   </span>
 </div>
 
 <div class="content">
- <span class="Q">Q</span> {{content}}
+ <span class="type_indicator">Q</span> {{content}}
 </div>
 {{#canEdit}}
 <button class="edit">edit</button>

@@ -17,6 +17,7 @@ window.Footnotes.Views.staticQuestionView = class StaticQuestionView extends Bac
     canEdit: Footnotes.Home.currentUser.get('username') == @model.get('creatorName')
     content: @model.get("content")
     id: @model.get("id")
+    createdAt: @model.get("createdAt")
 
   redirect: ->
     window.location.replace("/overlay?external_url=#{@model.get("externalURL")}")

@@ -16,15 +16,21 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     @model.bind("destroy", @clear,@)
  
   render: ->
-    @$el.html Footnotes.template('notes/QuestionView').render(@context())
+    @$el.html Footnotes.template('notes/questionTemplate').render(@context())
     return this
 
   toggleView: ->
     others = @$el.find('.title').siblings()
+    typeIndicator = @$(".type_indicator")
+    typeIndicator.remove()
     others.each ->
       if $(this).is(":visible")
+        $(this).siblings(".title").addClass('minimized')
+        $(this).siblings(".title").prepend(typeIndicator)
         $(this).hide()
       else
+        $(this).siblings(".title").removeClass('minimized')
+        $(this).siblings(".content").prepend(typeIndicator)
         $(this).show()
 
   edit: ->
@@ -44,9 +50,11 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     canEdit: Footnotes.Overlay.currentUser.get('username') == @model.get('creatorName')
     content: @model.get("content")
     id: @model.get("id")
+    createdAt: @model.get("createdAt")
 
 
-  close: ->
+  close: (event)->
+    event.preventDefault()
     @render()
 
   submit: (event) ->

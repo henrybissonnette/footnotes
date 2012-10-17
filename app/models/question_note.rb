@@ -31,7 +31,8 @@ class QuestionNote < ActiveRecord::Base
       title: title,
       noteType: note_type,
       creatorName: creator_name,
-      externalURL: subject_url
+      externalURL: subject_url,
+      createdAt: created_at.strftime("%m/%d/%y %H:%M")
     }
   end
 

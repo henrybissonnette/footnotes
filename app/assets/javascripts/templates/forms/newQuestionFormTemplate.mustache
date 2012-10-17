@@ -8,7 +8,11 @@
   {{#id}}
   <input type="hidden" name="id" value="{{id}}" />
   {{/id}}
-  <input type="submit" value={{^id}}"ask"{{/id}}{{#id}}"submit"{{/id}} />
+  <input type="submit" value={{^id}}"ask"{{/id}}{{#id}}"save"{{/id}} />
+  <button class="close">cancel</button>
+  {{#id}}
+  <button class="delete">delete</button>
+  {{/id}}
 </form>
-<button class="delete">delete</button>
-<button class="close">cancel</button>
+
+

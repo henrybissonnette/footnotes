@@ -25,6 +25,13 @@ $overlayHeight:1000px;
   border-radius: 10px;
 }
 
+@mixin round_top {
+  -moz-top-left-border-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-top-right-border-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
 @mixin clickable {
   cursor:pointer;
 }
@@ -43,16 +50,35 @@ $overlayHeight:1000px;
 }
 
 h1,h2,h3,h4,h5,h6{
-  color:#225
+  text-align:center;
+  color:$footnotesBlue;
 }
 
-button,  {
+button  {
   @include clickable;
 }
 
 textarea,input[type=text]{
   width:100%;
 }
+
+a{
+  text-decoration: none;
+  &:hover{
+    text-decoration:underline;
+  }
+}
+
+button{
+  font-size:12px;
+  border-style:none;
+  background-color:transparent;
+  color:$footnotesBlue;
+  &:hover{
+    text-decoration:underline;
+  }
+}
+
 
 /******************
 * Header
@@ -94,10 +120,6 @@ textarea,input[type=text]{
     }
     a{
       color: white;
-      text-decoration: none;
-      &:hover{
-        text-decoration:underline;
-      }
     }
   }
 }
@@ -141,12 +163,12 @@ textarea,input[type=text]{
     padding-right:10px;
   }
   .notes{
-    overflow:scroll;
     padding-right:10px;
   }
   float: right;
   height: $overlayHeight;
   width:22%;
+  overflow:scroll;
 }
 
 /******************
@@ -169,19 +191,40 @@ textarea,input[type=text]{
   border:1px solid white;
   @include round_corners;
   .title{
-    text-align:center;
-    background-color:#e0e0ff;
+    @include round_top;
+    color: white;
+    background-color:$footnotesBlue;
     font-size:18px;
-    border-bottom:solid 3px white;;
+    .text{
+    }
+    .type_indicator{
+      margin:0px;
+      padding:0px;
+      float: left;
+    }
+  }
+  .info{
+    text-align:right;
+    margin-left:10px;
+    margin-right:10px;
+    padding:0px;
+    color:#999;
+    font-size:14px;
+    border-bottom:solid white 3px;
   }
   *{
     padding-left:10px;
   }
-  .Q{
+  .type_indicator{
     margin-right:10px;
     font-size:20px;
   }
+  .minimized{
+    @include round_corners;
+  }
+
 }
+
 
 /******************
 * Miscellaneous
