@@ -33,7 +33,7 @@ class QuestionNote < ActiveRecord::Base
       creatorName: creator_name,
       externalURL: subject_url,
       createdAt: created_at.strftime("%m/%d/%y %H:%M"),
-      userID: creator_id
+      creatorID: creator_id
     }
   end
 

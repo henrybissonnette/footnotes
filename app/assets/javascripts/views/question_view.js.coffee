@@ -51,7 +51,7 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     content: @model.get("content")
     id: @model.get("id")
     createdAt: @model.get("createdAt")
-    userID: @model.get("userID")
+    creatorID: @model.get("userID")
 
 
   close: (event)->

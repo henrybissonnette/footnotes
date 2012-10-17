@@ -4,7 +4,13 @@
 
 <div class="info">
   <span class="author">
-    <a href="/users/{{userID}}">{{creatorName}}</a> at {{createdAt}}
+    {{#creatorID}}
+      <a href="/users/{{creatorID}}">{{creatorName}}</a>
+    {{/creatorID}} 
+    {{^creatorID}}
+    anonymous
+    {{/creatorID}}
+    at {{createdAt}}
   </span>
 </div>
 
