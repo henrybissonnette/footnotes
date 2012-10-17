@@ -9,15 +9,29 @@ class HtmlLinkLocalizer
     @input_html = html
     @local_url = local_url
     @external_url = add_http(external_url)
+    puts "external url is: #{@external_url}"
   end
 
   def get_localized_html
-    each_href do |href|
-      localize_href(href)
+
+    @source = fetch_source
+
+    each_href do |uri|
+      localize_href(uri)
     end
+    each_resource do |uri|
+      make_absolute(uri)
+    end
+
+    @source.to_html
   end
 
   private
+
+  def fetch_source
+    external = open(@external_url)
+    Nokogiri::HTML(external)
+  end
 
   def is_anchor?(href)
     href[0] == '#'
@@ -56,18 +70,21 @@ class HtmlLinkLocalizer
   end
 
   def each_href
-    # TODO figure out why I cant chain this
-    
-    external = open(@external_url)
-    out = Nokogiri::HTML(external)
-
-    out.css('a').each do |link|
+    @source.css('a').each do |link|
       link['href'] = yield(link['href']) if link['href'] && !is_anchor?(link['href'])
     end
-    out.css('form').each do |form|
+    @source.css('form').each do |form|
       form['action'] = yield(form['action']) if form['action']
     end  
-    # TODO need to handle resources and forms with relative uris
-    out.to_html
+  end
+
+  def each_resource
+    @source.css('script').each do |tag|
+      tag['src'] = yield(tag['src']) if tag['src']
+    end  
+
+    @source.css('link').each do |link|
+      link['href'] = yield(link['href']) if link['href']
+    end
   end
 end
