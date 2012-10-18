@@ -11,7 +11,7 @@ window.Footnotes.Views.NoteListView = Backbone.View.extend
     # show spinner
 
   renderQuestions: ->  
-    @$el.empty() 
+    @$el.empty()
     @collection.each (question) => 
       view = new Footnotes.Views.QuestionView
             model: question

@@ -26,5 +26,6 @@ window.Footnotes.Views.NewQuestionFormView = Backbone.View.extend
     event.preventDefault()
     data = Footnotes.formToObj @$('form')
     data['external_url'] = Footnotes.Overlay.getExternalURL()
+    data['createdAt'] = (new Date).toISOString()
     @questions.create data
-    @closeForm()
+    @closeForm() 

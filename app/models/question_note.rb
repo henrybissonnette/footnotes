@@ -1,5 +1,3 @@
-
-
 class QuestionNote < ActiveRecord::Base
   include FootnoteModule
   has_one :meta, 
@@ -32,9 +30,12 @@ class QuestionNote < ActiveRecord::Base
       noteType: note_type,
       creatorName: creator_name,
       externalURL: subject_url,
-      createdAt: created_at.strftime("%m/%d/%y %H:%M"),
+      createdAt: created_at,
+      createdAtPretty: created_at.strftime("%m/%d/%y %H:%M"),
       creatorID: creator_id
     }
   end
+
+  private
 
 end
