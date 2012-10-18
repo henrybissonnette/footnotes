@@ -19,6 +19,7 @@ window.Footnotes.Views.staticQuestionView = class StaticQuestionView extends Bac
     id: @model.get("id")
     createdAt: @model.get("createdAt")
     creatorID: @model.get("creatorID")
-
+    createdAtPretty: @model.get("createdAtPretty")
+    
   redirect: ->
     window.location.replace("/overlay?external_url=#{@model.get("externalURL")}")

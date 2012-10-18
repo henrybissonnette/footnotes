@@ -17,11 +17,6 @@ Footnotes.Collections.Questions = Backbone.Collection.extend
   model: Footnotes.Models.Question
 
   comparator: (questionA,questionB) ->
-    # question.get("title")
-    # console.log question.get("createdAt")
-    # new Date() - question.get("foo")
-
-
     a = questionA.get("createdAt")
     b = questionB.get("createdAt")
     value = 1 if a > b
