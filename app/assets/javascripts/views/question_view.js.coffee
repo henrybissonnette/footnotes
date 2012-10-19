@@ -2,7 +2,7 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
   
   tagName: 'div'
 
-  className: 'footnote' 
+  className: 'footnote'
 
   events: 
     'click .title' : 'toggleView'
@@ -14,6 +14,8 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
   initialize: ->
     @model.bind("change",@render,@)
     @model.bind("destroy", @clear,@)
+    @$el.addClass @model.get('noteType')
+    @$el.attr('id',"#{@model.get("noteType")}#{@model.get("id")}")
  
   render: ->
     @$el.html Footnotes.template('notes/questionTemplate').render(@context())
@@ -37,7 +39,8 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     form = Footnotes.template('forms/newQuestionFormTemplate').render(@context())
     @$el.html(form)
 
-  delete: ->
+  delete: (event) ->
+    event.preventDefault()
     if confirm("Permanently delete #{@model.get("title")}?")
       @model.destroy()
 
@@ -53,6 +56,7 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     createdAt: new Date(@model.get("createdAt"))
     creatorID: @model.get("creatorID")
     createdAtPretty: @model.get("createdAtPretty")
+    noteType: @model.get("noteType")
 
 
   close: (event)->

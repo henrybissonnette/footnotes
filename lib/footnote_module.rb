@@ -1,6 +1,29 @@
 
 module FootnoteModule
 
+  def self.included(base)
+    base.has_one :meta, 
+        :as => :note,
+        :class_name => 'MetaNote', 
+        :foreign_key => 'note_id',
+        :autosave => true,
+        :dependent => :destroy
+    base.validates_associated :meta
+  end
+
+  def initialize(args = nil)
+    super
+    set_meta
+  end
+
+  def set_meta(attr={})
+    if self.meta
+      self.meta.update_attributes(attr)
+    else
+      self.meta = self.build_meta(attr)
+    end
+  end
+
   def creator_name
     self.meta.creator_name || 'anonymous'
   end

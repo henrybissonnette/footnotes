@@ -4,6 +4,7 @@ class MetaNote < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User' 
   belongs_to :parent, :class_name => 'MetaNote'
   has_many :children, :class_name => 'MetaNote',:foreign_key => 'parent_id'
+  validates :subject_url, :presence => true
 
   def to_json
     {
