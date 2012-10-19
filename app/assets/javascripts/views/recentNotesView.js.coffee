@@ -1,6 +1,4 @@
 window.Footnotes.Views.RecentNotesView = Backbone.View.extend
-  
-  el: '#recent_notes'
 
   initialize: ->
     @collection.on('add', @renderQuestions, @)

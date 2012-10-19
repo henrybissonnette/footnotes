@@ -1,2 +1,15 @@
-<h1>Show User</h1>
-<%= @user.username %>
+<% content_for :bootstrapData do %>
+  Footnotes.User.myNotes = <%= raw @my_notes.to_json %>
+<% end %>
+
+<% content_for :scripts do %>
+  <%= javascript_tag do %>
+    $(function() {
+      Footnotes.User.init();
+    });
+  <% end %>
+<% end %>
+
+<h1><%= @user.username %></h1>
+
+<div id="myNotes"></div>

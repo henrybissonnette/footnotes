@@ -158,6 +158,20 @@ button{
   margin-right:600px;
 }
 
+/*******************
+* Home
+*******************/
+body{
+  text-align:center;
+}
+
+#myNotes{
+  margin:auto;
+  width:280px;
+  height: $overlayHeight;
+  overflow:scroll;
+}
+
 
 /*******************
 * Overlay

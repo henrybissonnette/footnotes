@@ -16,5 +16,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @my_notes = my_notes(10)
+    @my_notes.map do |note|
+      note.to_json
+    end
+  end
+
+  def my_notes(number)
+    MetaNote.get_by_user(params[:id], number)
   end
 end

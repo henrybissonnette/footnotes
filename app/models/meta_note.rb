@@ -20,12 +20,22 @@ class MetaNote < ActiveRecord::Base
     creator ? creator.username : 'anonymous'
   end
 
-  def self.get_recent(number)
-    recent_meta = self.includes(:note).order("created_at desc").limit(number)
-    recent_meta.map! do |meta|
-      meta.note.to_json
-    end
+  def self.get_recent(limit = 10)
+    recent_meta = self.includes(:note).order("created_at desc").limit(limit)
+    convert_metas_to_notes!(recent_meta)
     recent_meta
+  end
+
+  def self.get_by_user(user_id, limit = 10)
+    by_user_meta = self.includes(:note).where('creator_id = ?',user_id).order("created_at desc").limit(limit)
+    convert_metas_to_notes!(by_user_meta)
+    by_user_meta
+  end
+
+  def self.convert_metas_to_notes!(meta_array)
+    meta_array.map! do |meta|
+      meta.note.to_json
+    end    
   end
 
 end

@@ -3,7 +3,10 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_tag do %>
-    Footnotes.currentUser = <%= raw current_user.to_json.to_json%>
+    $(function() {
+      Footnotes.App.init();
+    });
+    Footnotes.currentUserData = <%= raw current_user.to_json.to_json%>
     <%= yield :bootstrapData %>
   <% end %>
   <%= yield :scripts %>

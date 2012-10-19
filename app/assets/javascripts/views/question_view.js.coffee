@@ -50,7 +50,7 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
   context: ->
     title: @model.get("title")
     creatorName: @model.get("creatorName")
-    canEdit: Footnotes.Overlay.currentUser.get('username') == @model.get('creatorName')
+    canEdit: Footnotes.currentUser.get('username') == @model.get('creatorName')
     content: @model.get("content")
     id: @model.get("id")
     createdAt: new Date(@model.get("createdAt"))
