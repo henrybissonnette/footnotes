@@ -211,6 +211,7 @@ body{
 ******************/
 
 .footnote{
+  text-align:left;
   margin:10px;
   margin-left:0px;
   padding: auto;
@@ -219,6 +220,7 @@ body{
   @include round_corners;
   .title{
     @include round_top;
+    text-align:center;
     color: white;
     background-color:$footnotesBlue;
     font-size:18px;

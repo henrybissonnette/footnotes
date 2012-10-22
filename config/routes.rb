@@ -4,8 +4,6 @@ Footnotes::Application.routes.draw do
 
   match '/footnotes/get', to: 'footnotes#get_page_notes'
 
-  match '/help', to: 'static_pages#help'
-
   match '/overlay', to: 'overlay#view'
   match '/overlay/proxy', to: 'overlay#proxy'
 

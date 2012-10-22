@@ -1,7 +1,5 @@
 window.Footnotes.Views.NewQuestionFormView = Backbone.View.extend
 
-  el: '.new'
-
   events:
     'submit form': 'submit'
     'click .open': 'openForm'

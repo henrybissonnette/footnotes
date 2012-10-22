@@ -11,6 +11,6 @@ window.Footnotes.Views.OverlayRightView = Backbone.View.extend
       questions: @questions
     @list = new Footnotes.Views.NoteListView   
       collection: @questions
-    @$el.append(@form.render())
+    @$el.find('.new').html(@form.render().el)
     @$el.append(@list.render())
     return this
