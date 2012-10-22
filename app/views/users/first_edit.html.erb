@@ -1,9 +1,10 @@
 <h1>Welcome to Footnotes</h1>
 <p>Please finish setting up your account by choosing a username.</p>
-
+<div id="user_info_form">
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages' %>
   <%= f.label :username %>
   <%= f.text_field :username %>
   <%= f.submit "Go" %>
 <% end %>
+</div>

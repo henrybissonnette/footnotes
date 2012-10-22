@@ -11,7 +11,7 @@ module FootnoteModule
     base.validates_associated :meta
   end
 
-  def initialize(args = nil)
+  def initialize
     super
     set_meta
   end

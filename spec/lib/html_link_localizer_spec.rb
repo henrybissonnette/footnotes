@@ -51,4 +51,38 @@ describe HtmlLinkLocalizer do
       localizer = HtmlLinkLocalizer.new(@local_string,external_url)
     end
   end
+  describe 'fetch_source' do  
+
+    it 'opens the external_url' do
+      controller.should_receive(:open).with("http://google.com")
+      get :proxy, external_url: "http://google.com"    
+    end
+
+    it 'should localize hrefs' do
+      input_urls = [
+        'www.other.site.com',
+        'naked.url.4.info/this/that/',
+        'http://www.website.org/a/b/c/d',
+        'https://www.can-have-hyphens-and-numb3rs.io/indian/ocean'
+      ]
+
+      received_html= input_urls.inject('') do |html,href|
+        html << "<a href=\"#{href}\">text</a>"
+      end
+
+      expected_urls = [
+        'www.other.site.com',
+        'naked.url.4.info/this/that/',
+        'http://www.website.org/a/b/c/d',
+        'https://www.can-have-hyphens-and-numb3rs.io/indian/ocean'
+      ]
+
+
+      controller.stub!(:open).and_return(received_html)
+      get :proxy, external_url: "http://google.com" 
+      expected_urls.each do |url|
+        response.body.should match(url)
+      end 
+    end
+  end
 end

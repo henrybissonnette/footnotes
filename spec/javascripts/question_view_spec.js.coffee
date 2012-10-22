@@ -87,12 +87,12 @@ describe "Footnotes.Views.QuestionView", ->
     it "is no longer displaying the form", ->
       expect(@question.find('form').length).toBe 0
 
-  # describe "submit", ->
-  #   beforeEach ->
-  #     spyOn(@model,'save')      
-  #     @question.find('.edit').click()
-  #     @question.find('form').submit()
-  #   it 'saves the model', ->
-  #     expect(@model.save).toHaveBeenCalled()
-  #   it 'displays the question', ->
-  #     expect(@question.find('.content').html()).toContain @model.get('content')
+  describe "submit", ->
+    beforeEach ->
+      spyOn(@model,'save')      
+      @question.find('.edit').click()
+      @question.find('form').submit()
+    it 'saves the model', ->
+      expect(@model.save).toHaveBeenCalled()
+    it 'displays the question', ->
+      expect(@question.find('.content').html()).toContain @model.get('content')

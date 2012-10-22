@@ -7,7 +7,7 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
   events: 
     'click .title' : 'toggleView'
     'click .edit' : 'edit'
-    'click .close' : 'close'
+    'click .close' : 'onClose'
     'click .delete' : 'delete'
     'submit form': 'submit'
 
@@ -58,9 +58,11 @@ window.Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     createdAtPretty: @model.get("createdAtPretty")
     noteType: @model.get("noteType")
 
-
-  close: (event)->
+  onClose: (event) ->
     event.preventDefault()
+    @close()
+
+  close: (event)->   
     @render()
 
   submit: (event) ->

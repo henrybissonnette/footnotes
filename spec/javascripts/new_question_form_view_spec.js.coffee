@@ -17,16 +17,16 @@ describe "Footnotes.Views.NewQuestionFormView", ->
     it "does not initially display a form", ->
       expect(@newFormObject.find('form').length).toBe 0
 
-  # describe "closeForm", ->
-  #   describe "when the form has been opened and then the close button is clicked", ->
-  #     beforeEach ->
-  #       @newFormObject.find('.open').click()
-  #       @newFormObject.find('.close').click()
-  #     it "displays an open button", -> 
-  #       expect(@newFormObject.find('button').hasClass('open')).toBe true
+  describe "closeForm", ->
+    describe "when the form has been opened and then the close button is clicked", ->
+      beforeEach ->
+        @newFormObject.find('.open').click()
+        @newFormObject.find('.close').click()
+      it "displays an open button", -> 
+        expect(@newFormObject.find('button').hasClass('open')).toBe true
 
-  #     it "does not display a form", ->
-  #       expect(@newFormObject.find('form').length).toBe 0
+      it "does not display a form", ->
+        expect(@newFormObject.find('form').length).toBe 0
 
 
   describe "openForm", ->
@@ -51,16 +51,24 @@ describe "Footnotes.Views.NewQuestionFormView", ->
     it "displays a cancel button", ->
       expect(@newFormObject.find('button.close').length).toBe 1
 
-  # describe "submit", ->
-  #   beforeEach ->
-  #     @newFormObject.find('.open').click()
-  #     form = @newFormObject.find('form')
-  #     form.find('input[name="title"]').val() = "test title"
-  #     form.find('input[name="content"]').val() = "test content"
-  #     spyOn(@questions, 'create')
+  describe "submit", ->
+    beforeEach ->
+      spyOn(Footnotes.Overlay,'getExternalURL').andReturn('www.google.com')
+      @createSpy = spyOn(@questions, 'create')
+      @newFormObject.find('.open').click()
+      form = @newFormObject.find('form')
+      form.find('input[name="title"]').val("test title")
+      form.find('textarea[name="content"]').val("test content")
+      form.submit()
+      @data = @createSpy.argsForCall[0][0]
 
-  #   it "calls create with the form data in an object", ->
-  #     #is there a way to get the data a spy was called with?
+    it "calls create with an object containing the correct content", ->
+      expect(@data.content).toBe "test content"
 
+    it "calls create with an object containing the correct title", ->
+      expect(@data.title).toBe "test title"
+
+    it "calls create with an object containing the correct external url", ->
+      expect(@data.external_url).toBe "www.google.com"
 
 

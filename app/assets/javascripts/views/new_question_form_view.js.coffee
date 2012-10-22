@@ -3,7 +3,7 @@ window.Footnotes.Views.NewQuestionFormView = Backbone.View.extend
   events:
     'submit form': 'submit'
     'click .open': 'openForm'
-    'click .close': 'closeForm'
+    'click .close': 'onClose'
 
   initialize: (options) ->
     @questions = options.questions
@@ -12,6 +12,10 @@ window.Footnotes.Views.NewQuestionFormView = Backbone.View.extend
     @closeForm()
     return this
       
+  onClose: (event) ->
+    event.preventDefault()
+    @closeForm()
+
   closeForm: ->
     contents = Footnotes.template('newQuestion').render()
     @$el.html contents
