@@ -1,8 +1,7 @@
 Footnotes.Overlay = 
 
   init: ->
-    @questions = new Footnotes.Collections.Questions
-    @questions.fetch()
+    @questions = new Footnotes.Collections.Questions Footnotes.Overlay.notes
     @overlay = new Footnotes.Views.OverlayRightView
       questions: @questions
     @overlay.render()

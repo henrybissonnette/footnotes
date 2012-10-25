@@ -32,6 +32,12 @@ class MetaNote < ActiveRecord::Base
     by_user_meta
   end
 
+  def self.get_by_subject_url(subject_url, limit = 10)
+    by_user_meta = self.where('subject_url = ?',subject_url).order("created_at desc").limit(limit)
+    convert_metas_to_notes!(by_user_meta)
+    by_user_meta
+  end
+
   def self.convert_metas_to_notes!(meta_array)
     meta_array.map! do |meta|
       meta.note.to_json

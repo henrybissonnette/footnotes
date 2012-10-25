@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   end
 
   def default
+    @overlay_fail = params['overlay_fail']
     @recent_notes = recent_notes(10)
     @recent_notes.map do |note|
       note.to_json

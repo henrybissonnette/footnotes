@@ -7,6 +7,7 @@ window.Footnotes.Views.NoteListView = Backbone.View.extend
     @collection.on('reset', @renderQuestions, @)
 
   render: ->
+    @renderQuestions()
     return this
     # show spinner
 

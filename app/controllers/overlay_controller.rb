@@ -12,6 +12,7 @@ class OverlayController < ApplicationController
   end
 
   def view
+    @notes = get_notes
     begin
       @topic = @external_url.match(%r{.*/([^/]+)/?})[1]
     rescue 
@@ -30,12 +31,16 @@ class OverlayController < ApplicationController
          document = localizer.get_localized_html
       end
       render text: document
-    rescue SocketError
-      redirect_to '/overlay/proxy?from_click=true'
+    rescue SocketError, URI::InvalidURIError
+      redirect_to "/overlay/proxy?from_click=true&overlay_fail=#{@external_url}"
     end
   end
 
   private
+
+  def get_notes(number = 10)
+    MetaNote.get_by_subject_url(@external_url,number)
+  end
 
   def resolve_layout
     case action_name

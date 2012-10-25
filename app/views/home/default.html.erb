@@ -20,6 +20,9 @@
 <%= link_to 'learn about apples', '/overlay?external_url=http://en.wikipedia.org/wiki/Apple' %>
 
 <h1>View a New URI With Footnotes</h1>
+<% if @overlay_fail %>
+  <span class="alert">Unable to find <%= @overlay_fail %><span/>
+<% end %>
 <form action="/overlay" name="URIFinder" method="get">
 <input type="text" placeholder="URI" name="external_url"/>
 <input type="submit" value="go"/>

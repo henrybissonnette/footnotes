@@ -9,7 +9,8 @@ $ ->
     try 
       external_url = search.match(/external_url=([^&]*)/)[1]
     catch error
-      window.location.replace '/?fail=#{external_url}'
+      overlay_fail = search.match(/overlay_fail=([^&]*)/)[1]
+      window.location.replace "/?overlay_fail=#{overlay_fail}"
     if ignore_first
       target_url = "/overlay"+search
       window.location.replace target_url
