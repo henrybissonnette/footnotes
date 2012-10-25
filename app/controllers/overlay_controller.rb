@@ -9,25 +9,30 @@ class OverlayController < ApplicationController
   def init
     @from_click = params[:from_click]
     @external_url = params[:external_url]
-    if !@external_url
-      redirect_to('/overlay?external_url=http://en.wikipedia.org/wiki/Apple')
-    end
   end
 
   def view
-    @topic = @external_url.match(%r{.*/([^/]+)/?})[1]
+    begin
+      @topic = @external_url.match(%r{.*/([^/]+)/?})[1]
+    rescue 
+      @topic = nil
+    end
   end
 
   def proxy
     document = ''
-    if @from_click != 'true'     
-      localizer =  HtmlLinkLocalizer.new(
-        '/overlay/proxy?from_click=true&external_url=',
-        @external_url
-        )
-       document = localizer.get_localized_html
+    begin
+      if @from_click != 'true'     
+        localizer =  HtmlLinkLocalizer.new(
+          '/overlay/proxy?from_click=true&external_url=',
+          @external_url
+          )
+         document = localizer.get_localized_html
+      end
+      render text: document
+    rescue SocketError
+      redirect_to '/overlay/proxy?from_click=true'
     end
-    render text: document
   end
 
   private

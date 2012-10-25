@@ -13,7 +13,6 @@ class HtmlLinkLocalizer
   end
 
   def get_localized_html
-
     @source = fetch_source
 
     each_href do |uri|

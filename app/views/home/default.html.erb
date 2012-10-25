@@ -17,5 +17,11 @@
 <h1>Welcome to withFootnotes</h1>
 <p>Footnotes is an application for attaching additional context to existing pages on the web. It's currently pre-pre-beta and thus doesn't do too much.</p>
 
-<%= link_to 'learn about apples', overlay_path %>
+<%= link_to 'learn about apples', '/overlay?external_url=http://en.wikipedia.org/wiki/Apple' %>
+
+<h1>View a New URI With Footnotes</h1>
+<form action="/overlay" name="URIFinder" method="get">
+<input type="text" placeholder="URI" name="external_url"/>
+<input type="submit" value="go"/>
+</form>
 </div>

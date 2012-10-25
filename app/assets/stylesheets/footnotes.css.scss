@@ -70,6 +70,10 @@ textarea,input[type=text]{
   width:100%;
 }
 
+p{
+  text-align:left;
+}
+
 a{
   text-decoration: none;
   &:hover{
@@ -155,7 +159,7 @@ button{
   overflow:scroll;
 }
 #welcome{
-  margin-right:600px;
+  margin-right:500px;
 }
 
 /*******************
