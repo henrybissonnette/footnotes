@@ -17,5 +17,6 @@
 //= require mustache
 //= require footnotes
 //= require hogan.js
+//= require_directory ./models
 //= require_tree .
 //= require_tree ./templates

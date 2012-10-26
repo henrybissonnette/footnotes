@@ -1,4 +1,4 @@
-window.Footnotes.Views.staticQuestionView = class StaticQuestionView extends Backbone.View
+Footnotes.Views.staticQuestionView = class StaticQuestionView extends Backbone.View
   
   tagName: 'div'
 

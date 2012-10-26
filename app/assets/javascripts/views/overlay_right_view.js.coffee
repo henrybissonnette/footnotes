@@ -1,4 +1,4 @@
-window.Footnotes.Views.OverlayRightView = Backbone.View.extend
+Footnotes.Views.OverlayRightView = Backbone.View.extend
 
   el: '#right_bar'
 

@@ -1,4 +1,4 @@
-window.Footnotes.Views.NewQuestionFormView = Backbone.View.extend
+Footnotes.Views.NewQuestionFormView = Backbone.View.extend
 
   events:
     'submit form': 'submit'

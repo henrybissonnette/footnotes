@@ -1,4 +1,4 @@
-window.Footnotes.Views.NoteListView = Backbone.View.extend
+Footnotes.Views.NoteListView = Backbone.View.extend
 
   el: '.notes'
 

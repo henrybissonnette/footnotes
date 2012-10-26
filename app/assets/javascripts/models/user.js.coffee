@@ -1,4 +1,4 @@
-window.Footnotes.Models.User = class User extends Backbone.Model
+Footnotes.Models.User = class User extends Backbone.Model
 
   urlRoot:
     '/users'

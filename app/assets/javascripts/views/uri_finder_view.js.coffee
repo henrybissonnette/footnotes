@@ -1,4 +1,4 @@
- window.Footnotes.Views.URIFinderView = class URIFinderView extends Backbone.View 
+Footnotes.Views.URIFinderView = class URIFinderView extends Backbone.View 
   el: 'form[name="URIFinder"]'
 
   events:
