@@ -36,12 +36,6 @@ class OverlayController < ApplicationController
   def init
     @from_click = params[:from_click]
     @external_url = params[:external_url]
-    puts '*'
-    puts '*'
-    puts '*'
-    puts '*'
-    puts '*'
-    puts @external_url
   end
 
   def get_notes(number = 10)

@@ -44,11 +44,11 @@ describe "Footnotes.Views.staticQuestionView", ->
       @$el = $(view.render().el)
       expect(@$el.find('a.toCreatorPage').length).toBe 0
 
-    describe "when any part of the static question is clicked", ->
-      it "loads the window with the question's source overlay", ->
-        spyOn(location,'replace')
-        @$el.click()
-        expect(location.replace).toHaveBeenCalledWith @model.get(externalURL)
+    # describe "when any part of the static question is clicked", ->
+    #   it "loads the window with the question's source overlay", ->
+    #     spyOn(location,'replace')
+    #     @$el.click()
+    #     expect(location.replace).toHaveBeenCalledWith @model.get(externalURL)
 
 
 
