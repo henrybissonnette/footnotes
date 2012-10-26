@@ -4,7 +4,7 @@ class QuestionNotesController < ApplicationController
     note = QuestionNote.new
     note.title = params['title']
     note.content = params['content']
-    note.subject_url = params['external_url']
+    note.subject_url = CGI::unescape(params['external_url'])
     note.creator_id = current_user ? current_user.id : nil
     note.save
     note.created_at = params['createdAt']

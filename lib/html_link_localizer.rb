@@ -9,7 +9,6 @@ class HtmlLinkLocalizer
     @input_html = html
     @local_url = local_url
     @external_url = add_http(external_url)
-    puts "external url is: #{@external_url}"
   end
 
   def get_localized_html

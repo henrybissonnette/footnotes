@@ -6,11 +6,6 @@ class OverlayController < ApplicationController
   before_filter :init
   layout :resolve_layout
 
-  def init
-    @from_click = params[:from_click]
-    @external_url = params[:external_url]
-  end
-
   def view
     @notes = get_notes
     begin
@@ -37,6 +32,17 @@ class OverlayController < ApplicationController
   end
 
   private
+
+  def init
+    @from_click = params[:from_click]
+    @external_url = params[:external_url]
+    puts '*'
+    puts '*'
+    puts '*'
+    puts '*'
+    puts '*'
+    puts @external_url
+  end
 
   def get_notes(number = 10)
     MetaNote.get_by_subject_url(@external_url,number)
