@@ -6,11 +6,14 @@ class UsersController < ApplicationController
     if not @user.update_attributes(params[:user])
       render 'first_edit'
     else
-      redirect_to(root_url)
+      redirect_to root_url
     end
   end
 
   def first_edit
+    if !signed_in?
+      redirect_to root_url
+    end
     @user = User.find(params[:id])
   end
 
