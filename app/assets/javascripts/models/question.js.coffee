@@ -1,14 +1,15 @@
 Footnotes.Models.Question = class Question extends Backbone.Model
-  defaults:
-    title: ''
-    content: 'content'
-    noteType: 'noType'
-    creatorName: 'anonymous'
-    canEdit: false
+
+  initialize: ->
+    @.set('children', new Footnotes.Collections.Questions())
 
   events:
     'error': 'alert'
 
   urlRoot:
     '/question_notes'
+
+  parse: (response) ->
+    response.children = new Footnotes.Collections.Questions response.children
+    return response
 

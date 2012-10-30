@@ -8,6 +8,7 @@ class QuestionNotesController < ApplicationController
     note.creator_id = current_user ? current_user.id : nil
     note.save
     note.created_at = params['createdAt']
+    note.parent = QuestionNote.find(params['parentID'])
     note.save
     render json: note.to_json
   end

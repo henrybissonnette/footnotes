@@ -12,7 +12,8 @@ class QuestionNote < ActiveRecord::Base
       externalURL: subject_url,
       createdAt: created_at,
       createdAtPretty: created_at.strftime("%m/%d/%y %H:%M"),
-      creatorID: creator_id
+      creatorID: creator_id,
+      children: children.to_json || {} 
     }
   end
 end

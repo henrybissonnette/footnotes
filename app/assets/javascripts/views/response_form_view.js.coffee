@@ -1,4 +1,4 @@
-Footnotes.Views.NewQuestionFormView = Backbone.View.extend
+Footnotes.Views.ResponseFormView = Backbone.View.extend
 
   events:
     'submit form': 'submit'
@@ -6,7 +6,7 @@ Footnotes.Views.NewQuestionFormView = Backbone.View.extend
     'click .close': 'onClose'
 
   initialize: (options) ->
-    @questions = options.questions
+    @parent = options.parent
 
   render: ->
     @closeForm()
@@ -17,11 +17,13 @@ Footnotes.Views.NewQuestionFormView = Backbone.View.extend
     @closeForm()
 
   closeForm: ->
-    contents = Footnotes.template('newQuestion').render()
+    contents = $('<button>').addClass('open').text('reply')
     @$el.html contents
   
   openForm: ->
-    content = Footnotes.template('forms/questionFormTemplate').render()
+    context = 
+      title:"Re: #{@parent.get('title')}"
+    content = Footnotes.template('forms/questionFormTemplate').render(context)
     @$el.html content      
 
   submit: (event) ->
@@ -29,5 +31,6 @@ Footnotes.Views.NewQuestionFormView = Backbone.View.extend
     data = Footnotes.formToObj @$('form')
     data['external_url'] = Footnotes.Overlay.getExternalURL()
     data['createdAt'] = (new Date).toISOString()
-    @questions.create data
+    data['parentID'] = @parent.get('id')
+    @parent.get('children').create data
     @closeForm() 

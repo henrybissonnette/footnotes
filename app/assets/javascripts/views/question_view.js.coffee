@@ -10,6 +10,7 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     'click .close' : 'onClose'
     'click .delete' : 'delete'
     'submit form': 'submit'
+    'click .content': 'viewFootnote'
 
   initialize: ->
     @model.bind("change",@render,@)
@@ -36,7 +37,7 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
         $(this).show()
 
   edit: ->
-    form = Footnotes.template('forms/newQuestionFormTemplate').render(@context())
+    form = Footnotes.template('forms/questionFormTemplate').render(@context())
     @$el.html(form)
 
   delete: (event) ->
@@ -69,4 +70,7 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     event.preventDefault()
     data = Footnotes.formToObj @$('form')
     @model.save data
-    @close()   
+    @close()  
+
+  viewFootnote: ->
+     @$el.trigger 'viewFootnote', @model

@@ -2,7 +2,7 @@ Footnotes.Overlay =
 
   init: ->
     @questions = new Footnotes.Collections.Questions Footnotes.Overlay.notes
-    @overlay = new Footnotes.Views.OverlayRightView
+    @overlay = new Footnotes.Views.OverlayView
       questions: @questions
     @overlay.render()
 

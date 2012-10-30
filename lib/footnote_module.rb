@@ -72,4 +72,11 @@ module FootnoteModule
     !!self.meta.subject_url
   end
 
+  def parent
+    self.meta.parent
+  end
+
+  def parent=(note)
+    self.meta.parent = note.meta
+  end
 end
