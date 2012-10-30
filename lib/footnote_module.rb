@@ -41,7 +41,7 @@ module FootnoteModule
   end
 
   def children
-    self.meta.children
+    self.meta.children.map{|meta| meta.note}
   end
 
   def note_type=(value)

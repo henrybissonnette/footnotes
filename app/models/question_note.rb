@@ -13,7 +13,7 @@ class QuestionNote < ActiveRecord::Base
       createdAt: created_at,
       createdAtPretty: created_at.strftime("%m/%d/%y %H:%M"),
       creatorID: creator_id,
-      children: children.to_json || {} 
+      children: children.map{|c| c.to_json} || {} 
     }
   end
 end

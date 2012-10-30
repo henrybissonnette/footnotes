@@ -73,4 +73,7 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     @close()  
 
   viewFootnote: ->
-     @$el.trigger 'viewFootnote', @model
+     @$el.trigger 
+       type: 'viewFootnote'
+       model: @model
+       parent: undefined

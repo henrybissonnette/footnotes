@@ -3,7 +3,8 @@ Footnotes.Views.OverlayView = Backbone.View.extend
   el: '#right_bar'
 
   events:
-    'viewFootnote .footnote': 'showFootnote'
+    'viewFootnote': 'onViewFootnote'
+    'viewAll': 'onViewAll'
 
   initialize: (options) ->
     @questions = options.questions
@@ -18,7 +19,11 @@ Footnotes.Views.OverlayView = Backbone.View.extend
     @$el.append @list.render()
     return this
 
-  showFootnote: (event,model) ->
+  onViewAll: ->
+    @render()
+
+  onViewFootnote: (event) ->
     @view = new Footnotes.Views.NoteFocusView
-      model: model
+      model: event.model
+      parentList: event.parentList
     @$el.html @view.render().el

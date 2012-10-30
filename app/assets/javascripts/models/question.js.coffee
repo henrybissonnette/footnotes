@@ -1,7 +1,8 @@
 Footnotes.Models.Question = class Question extends Backbone.Model
 
   initialize: ->
-    @.set('children', new Footnotes.Collections.Questions())
+    raw = @.get('children')
+    @.set('children', new Footnotes.Collections.Questions(raw))
 
   events:
     'error': 'alert'
