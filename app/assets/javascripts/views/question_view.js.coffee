@@ -81,7 +81,6 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
      @$el.trigger 
        type: 'viewFootnote'
        model: @model
-       parent: undefined
 
   onLinkClick: (event) ->
     event.stopPropagation()
