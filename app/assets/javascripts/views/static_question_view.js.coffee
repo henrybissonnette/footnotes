@@ -25,6 +25,7 @@ Footnotes.Views.staticQuestionView = class StaticQuestionView extends Backbone.V
     creatorID: @model.get("creatorID")
     createdAtPretty: @model.get("createdAtPretty")
     noteType: @model.get("noteType")
+    descendantCount: @model.get("descendantCount")
 
   redirect: ->
     window.location.replace("/overlay?external_url=#{@model.get("externalURL")}")

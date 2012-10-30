@@ -1,6 +1,7 @@
 
 
-<div class="title clickable">
+<div class="title">
+  <span class="minimize clickable">-</span>
   <span class="text">{{title}}</span>
 </div>
 
@@ -17,8 +18,10 @@
 </div>
 
 <div class="content">
- <span class="type_indicator">Q</span> {{content}}
+ <span class="type_indicator">Q</span> {{content}} <br/>
+ <span class="responses">{{descendantCount}} responses</span>
 </div>
+<div class="pusher"></div>
 {{#canEdit}}
 <button class="edit">edit</button>
 {{/canEdit}}

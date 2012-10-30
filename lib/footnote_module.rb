@@ -24,6 +24,10 @@ module FootnoteModule
     end
   end
 
+  def count_descendants
+    self.meta.count_descendants
+  end
+
   def creator_name
     self.meta.creator_name || 'anonymous'
   end

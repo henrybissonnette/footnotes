@@ -5,12 +5,13 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
   className: 'footnote'
 
   events: 
-    'click .title' : 'toggleView'
+    'click a' : 'onLinkClick'
+    'click .minimize' : 'onToggleView'
     'click .edit' : 'edit'
     'click .close' : 'onClose'
     'click .delete' : 'delete'
     'submit form': 'submit'
-    'click .content': 'viewFootnote'
+    'click': 'viewFootnote'
 
   initialize: ->
     @model.bind("change",@render,@)
@@ -22,16 +23,19 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     @$el.html Footnotes.template('notes/questionTemplate').render(@context())
     return this
 
-  toggleView: ->
+  onToggleView: (event) ->
+    event.stopPropagation()
     others = @$el.find('.title').siblings()
     typeIndicator = @$(".type_indicator")
     typeIndicator.remove()
     others.each ->
       if $(this).is(":visible")
+        $(this).siblings(".title").find('.minimize').text('+')
         $(this).siblings(".title").addClass('minimized')
         $(this).siblings(".title").prepend(typeIndicator)
         $(this).hide()
       else
+        $(this).siblings(".title").find('.minimize').text('-')
         $(this).siblings(".title").removeClass('minimized')
         $(this).siblings(".content").prepend(typeIndicator)
         $(this).show()
@@ -58,6 +62,7 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     creatorID: @model.get("creatorID")
     createdAtPretty: @model.get("createdAtPretty")
     noteType: @model.get("noteType")
+    descendantCount: @model.get("descendantCount")
 
   onClose: (event) ->
     event.preventDefault()
@@ -77,3 +82,6 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
        type: 'viewFootnote'
        model: @model
        parent: undefined
+
+  onLinkClick: (event) ->
+    event.stopPropagation()

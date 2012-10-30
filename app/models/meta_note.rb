@@ -6,18 +6,17 @@ class MetaNote < ActiveRecord::Base
   has_many :children, :class_name => 'MetaNote',:foreign_key => 'parent_id'
   validates :subject_url, :presence => true
 
-  def to_json
-    {
-      note_type: note_type,
-      creator: creator.to_json,
-      subject_url: subject_url,
-      #children: @children.to_json,
-      title: title
-    }
-  end
-
   def creator_name
     creator ? creator.username : 'anonymous'
+  end
+
+  def count_descendants(first = true)
+    #TODO replace this with a version that doesnt suck
+    count = first ? 0 : 1
+    children.each do |child| 
+      count += child.count_descendants(false)
+    end    
+    count 
   end
 
   def self.get_recent(limit = 10)

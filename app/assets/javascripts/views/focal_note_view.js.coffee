@@ -2,10 +2,7 @@ Footnotes.Views.FocalNoteView = Backbone.View.extend
   
   tagName: 'div'
 
-  className: 'footnote clickable'
-
-  events:
-    'click':'redirect'
+  className: 'footnote'
 
   initialize: ->
     @$el.addClass("#{@model.get("noteType")}")
@@ -25,6 +22,3 @@ Footnotes.Views.FocalNoteView = Backbone.View.extend
     creatorID: @model.get("creatorID")
     createdAtPretty: @model.get("createdAtPretty")
     noteType: @model.get("noteType")
-
-  redirect: ->
-    window.location.replace("/overlay?external_url=#{@model.get("externalURL")}")

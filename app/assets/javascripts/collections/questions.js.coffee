@@ -1,8 +1,24 @@
  Footnotes.Collections.Questions = Backbone.Collection.extend
+  model: Footnotes.Models.Question
+
   url: ->
     '/question_notes' + location.search
 
-  model: Footnotes.Models.Question
+  initialize: (models, options) ->
+    if options
+      @parent = options[0].parent
+    @on('add', @onAdd, @)
+    @on('reset', @onReset, @)
+
+  onAdd: ->
+    @setParent()
+
+  onReset: ->
+    @setParent()
+
+  setParent: ->
+    @each (model) =>
+      model.set('parent', @parent)
 
   comparator: (questionA,questionB) ->
     a = questionA.get("createdAt")
