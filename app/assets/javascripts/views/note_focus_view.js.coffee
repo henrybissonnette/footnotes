@@ -2,6 +2,8 @@ Footnotes.Views.NoteFocusView = Backbone.View.extend
 
   events:
     'click .goUp': 'onGoUp'
+    'click .focus': 'onGoUp'
+    'click a': 'onLinkClick'
 
   render: ->
     @$el.html Footnotes.template('noteFocusTemplate').render()
@@ -21,3 +23,5 @@ Footnotes.Views.NoteFocusView = Backbone.View.extend
       type: 'viewFootnote'
       model: @model.get('parent')
 
+  onLinkClick: (event) ->
+    event.stopPropagation()

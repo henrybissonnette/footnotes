@@ -7,6 +7,10 @@ Footnotes::Application.routes.draw do
   match '/overlay', to: 'overlay#view'
   match '/overlay/proxy', to: 'overlay#proxy'
 
+  namespace :api do
+    resources :notes
+  end
+
   resources :question_notes
 
   resources :users do
