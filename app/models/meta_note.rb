@@ -34,13 +34,12 @@ class MetaNote < ActiveRecord::Base
   def self.get_by_subject_url(subject_url, limit = 10)
     by_subject_meta = self.where(subject_url: subject_url,parent_id: nil).order("created_at desc").limit(limit)
     convert_metas_to_notes!(by_subject_meta)
+    puts "AFTER CONVERSION" 
+    puts by_subject_meta.to_yaml
     by_subject_meta
   end
 
   def self.convert_metas_to_notes!(meta_array)
-    meta_array.map! do |meta|
-      meta.note.to_json
-    end    
+    meta_array.map! { |meta| meta.note.to_json }
   end
-
 end

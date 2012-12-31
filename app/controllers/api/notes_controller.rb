@@ -8,7 +8,7 @@ class Api::NotesController < ApplicationController
   end
 
   def fetch_notes_for_url(url)
-    notes = MetaNote.get_by_subject_url(url,100).order("created_at desc")
+    notes = MetaNote.get_by_subject_url(url,100)
     json = notes.map { |note| note.to_json}
   end
 end
