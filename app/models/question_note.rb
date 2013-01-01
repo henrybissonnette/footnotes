@@ -4,7 +4,7 @@ class QuestionNote < ActiveRecord::Base
 
   def to_json
     out = {
-      id: id,
+      id: unique_ID,
       content: content,
       title: title,
       noteType: note_type,
@@ -13,8 +13,9 @@ class QuestionNote < ActiveRecord::Base
       createdAt: created_at,
       createdAtPretty: created_at.strftime("%m/%d/%y %H:%M"),
       creatorID: creator_id,
-      children: children.map{|c| c.to_json} || {}, 
-      descendantCount: count_descendants
+      child_IDs: child_IDs, 
+      descendantCount: count_descendants,
+      parentID: parent_ID
     }
   end
 end

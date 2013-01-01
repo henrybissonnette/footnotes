@@ -4,21 +4,14 @@
   url: ->
     '/question_notes' + location.search
 
-  initialize: (models, options) ->
-    if options
-      @parent = options[0].parent
-    @on('add', @onAdd, @)
-    @on('reset', @onReset, @)
+  getParent: (model) ->
+    @where({id: model.get('parentID')})[0]
 
-  onAdd: ->
-    @setParent()
+  getChildren: (model) ->
+    new Footnotes.Collections.Questions @where({parentID: model.id})
 
-  onReset: ->
-    @setParent()
-
-  setParent: ->
-    @each (model) =>
-      model.set('parent', @parent)
+  getTopNotes: ->
+    new Footnotes.Collections.Questions @where({parentID: null})
 
   comparator: (questionA,questionB) ->
     a = questionA.get("createdAt")

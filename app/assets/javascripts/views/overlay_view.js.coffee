@@ -13,7 +13,7 @@ Footnotes.Views.OverlayView = Backbone.View.extend
     @form = new Footnotes.Views.NewQuestionFormView
       questions: @questions
     @list = new Footnotes.Views.NoteListView   
-      collection: @questions
+      collection: @questions.getTopNotes()
     @$el.find('.new').html(@form.render().el)
     @$el.append @list.render()
     return this
@@ -25,8 +25,8 @@ Footnotes.Views.OverlayView = Backbone.View.extend
     model = event.model
     if model
       @view = new Footnotes.Views.NoteFocusView
+        collection: @questions
         model: event.model
-        parentList: event.parentList
       @$el.html @view.render().el
     else
       @render()

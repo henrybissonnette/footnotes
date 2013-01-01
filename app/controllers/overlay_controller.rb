@@ -38,7 +38,7 @@ class OverlayController < ApplicationController
     @external_url = params[:external_url]
   end
 
-  def get_notes(number = 10)
+  def get_notes(number = 100)
     MetaNote.get_by_subject_url(@external_url,number)
   end
 

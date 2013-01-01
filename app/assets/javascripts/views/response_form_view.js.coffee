@@ -32,5 +32,5 @@ Footnotes.Views.ResponseFormView = Backbone.View.extend
     data['external_url'] = Footnotes.Overlay.getExternalURL()
     data['createdAt'] = (new Date).toISOString()
     data['parentID'] = @parent.get('id')
-    @parent.get('children').create data
+    @collection.create data
     @closeForm() 

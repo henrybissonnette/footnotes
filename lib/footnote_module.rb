@@ -48,6 +48,10 @@ module FootnoteModule
     self.meta.children.map{|meta| meta.note}
   end
 
+  def child_IDs
+    self.meta.children.map{|meta| meta.id}
+  end
+
   def note_type=(value)
     self.meta.note_type = value
   end
@@ -78,6 +82,18 @@ module FootnoteModule
 
   def parent
     self.meta.parent
+  end
+
+  def parent_ID
+    if self.meta.parent
+      self.meta.parent.id
+    else
+      nil
+    end
+  end
+
+  def unique_ID
+    self.meta.id
   end
 
   def parent=(note)
