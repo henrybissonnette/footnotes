@@ -2,6 +2,8 @@ Footnotes::Application.routes.draw do
 
   root to: 'home#default'
 
+  match '/notes_for_url', to: 'notes_for_url#view'
+
   match '/footnotes/get', to: 'footnotes#get_page_notes'
 
   match '/overlay', to: 'overlay#view'

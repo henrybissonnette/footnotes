@@ -1,0 +1,26 @@
+
+<% if @from_extension %>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+<% end %>
+
+<%= javascript_tag do %>
+  <% if @from_extension %>
+    Footnotes.App.init();
+    Footnotes.currentUserData = <%= raw current_user.to_json.to_json%>;
+    Footnotes.Overlay.notes = <%= raw @notes.to_json %>;
+  <% end %>
+  $(function() {
+    Footnotes.Notes.init();
+  });
+<% end %>
+
+
+<div id="pseudoheader">
+  hello?
+  <%= Rails.env %>
+</div>
+
+<div id="pseudobody">
+
+</div>

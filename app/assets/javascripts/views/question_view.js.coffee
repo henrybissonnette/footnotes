@@ -1,5 +1,4 @@
 Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
-  
   tagName: 'div'
 
   className: 'footnote'

@@ -1,6 +1,6 @@
 Footnotes.Views.OverlayView = Backbone.View.extend
 
-  el: '#right_bar'
+  el: '#pseudobody'
 
   events:
     'viewFootnote': 'onViewFootnote'
