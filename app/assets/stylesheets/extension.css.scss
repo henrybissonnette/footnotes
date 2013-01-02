@@ -1,0 +1,29 @@
+/******************
+* Colors
+******************/
+
+$footnotesBlue: #204080;
+
+iframe {
+  margin: 0px;
+} 
+
+#extension-nav {
+  margin: 0px;
+  font-size: 35px;
+  background-color: $footnotesBlue;
+  font-weight: bold;
+  color: white;
+}
+
+#pseudobody {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  margin: 0px;
+  padding: 3px;
+  border: solid 1px black;
+  background-color: white;
+  height: 95%;
+  overflow:auto;
+}

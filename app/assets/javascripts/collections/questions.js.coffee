@@ -7,6 +7,9 @@
   getParent: (model) ->
     @where({id: model.get('parentID')})[0]
 
+  getByID: (id) ->
+    @where({id: id})[0]
+
   getChildren: (model) ->
     new Footnotes.Collections.Questions @where({parentID: model.id})
 

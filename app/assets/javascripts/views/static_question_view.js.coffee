@@ -28,4 +28,6 @@ Footnotes.Views.staticQuestionView = class StaticQuestionView extends Backbone.V
     descendantCount: @model.get("descendantCount")
 
   redirect: ->
-    window.location.replace("/overlay?external_url=#{@model.get("externalURL")}")
+    window.location.replace("""
+      /overlay?external_url=#{@model.get("externalURL")}&focusID=#{@model.id}
+      """)

@@ -5,6 +5,8 @@ Footnotes.Models.Question = class Question extends Backbone.Model
   urlRoot:
     '/question_notes'
 
+  isTopLevel: ->
+    !@get 'parentID'
 
 
 

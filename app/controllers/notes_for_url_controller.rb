@@ -2,6 +2,7 @@ class NotesForUrlController < ActionController::Base
   layout false
 
   def view
+    @focusID = params['focusID']
     @from_extension = params['from_extension']
     @notes = get_notes
     begin

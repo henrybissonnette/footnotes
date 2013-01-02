@@ -2,6 +2,7 @@
 <% if @from_extension %>
   <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "extension", :media => "all" %>
 <% end %>
 
 <%= javascript_tag do %>
@@ -9,17 +10,21 @@
     Footnotes.App.init();
     Footnotes.currentUserData = <%= raw current_user.to_json.to_json%>;
     Footnotes.Overlay.notes = <%= raw @notes.to_json %>;
+    <% if @focusID %>
+      Footnotes.Overlay.focusID = <%= @focusID %>;
+    <% end %>
   <% end %>
   $(function() {
     Footnotes.Notes.init();
   });
 <% end %>
 
+<% if @from_extension %>
+  <div id="extension-nav" >
+    withFootnotes
+  </div>
+<% end %>
 
-<div id="pseudoheader">
-  hello?
-  <%= Rails.env %>
-</div>
 
 <div id="pseudobody">
 

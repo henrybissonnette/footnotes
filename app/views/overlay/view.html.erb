@@ -1,5 +1,8 @@
 <% content_for :bootstrapData do %>
-  Footnotes.Overlay.notes = <%= raw @notes.to_json %>
+  Footnotes.Overlay.notes = <%= raw @notes.to_json %>;
+  <% if @focusID %>
+    Footnotes.Overlay.focusID = <%= @focusID %>;
+  <% end %>
 <% end %>
 
 <% use_full_width true %>

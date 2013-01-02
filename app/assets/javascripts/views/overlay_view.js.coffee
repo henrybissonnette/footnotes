@@ -7,26 +7,34 @@ Footnotes.Views.OverlayView = Backbone.View.extend
 
   initialize: (options) ->
     @questions = options.questions
+    @initialFocus = @questions.getByID Footnotes.Overlay.focusID
 
   render: ->
-    @$el.html Footnotes.template('overlayTemplate').render()
-    @form = new Footnotes.Views.NewQuestionFormView
-      questions: @questions
-    @list = new Footnotes.Views.NoteListView   
-      collection: @questions.getTopNotes()
-    @$el.find('.new').html(@form.render().el)
-    @$el.append @list.render()
+    if @initialFocus && !@initialFocus.isTopLevel()
+      @onViewFootnote()
+    else
+      @$el.html Footnotes.template('overlayTemplate').render()
+      @form = new Footnotes.Views.NewQuestionFormView
+        questions: @questions
+      @list = new Footnotes.Views.NoteListView   
+        collection: @questions
+      @$el.find('.new').html(@form.render().el)
+      @$el.append @list.render().el
+    @initialFocus = undefined
     return this
 
   onViewAll: ->
     @render()
 
   onViewFootnote: (event) ->
-    model = event.model
+    if event
+      model = event.model
+    else 
+      model = @initialFocus
     if model
       @view = new Footnotes.Views.NoteFocusView
         collection: @questions
-        model: event.model
+        model: model
       @$el.html @view.render().el
     else
       @render()

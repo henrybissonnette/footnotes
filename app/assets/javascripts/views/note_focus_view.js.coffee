@@ -22,9 +22,10 @@ Footnotes.Views.NoteFocusView = Backbone.View.extend
 
   renderChildren: ->
     @children = new Footnotes.Views.NoteListView
-      collection: @collection.getChildren @model
+      collection: @collection
+      focus: @model
     @$el.find('.children').html @children.render().el
-    
+
   onGoUp: ->
     @$el.trigger 
       type: 'viewFootnote'

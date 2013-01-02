@@ -8,7 +8,9 @@ class QuestionNotesController < ApplicationController
     note.creator_id = current_user ? current_user.id : nil
     note.save
     note.created_at = params['createdAt']
-    note.parent = MetaNote.find(params['parentID']).note
+    if params['parentID']
+      note.parent = MetaNote.find(params['parentID']).note
+    end
     note.save
     render json: note.to_json
   end
@@ -36,5 +38,4 @@ class QuestionNotesController < ApplicationController
 
     render json: json
   end  
-
 end

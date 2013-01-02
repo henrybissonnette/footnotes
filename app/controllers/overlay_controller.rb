@@ -6,7 +6,7 @@ class OverlayController < ApplicationController
   before_filter :init
   layout :resolve_layout
 
-  def view
+  def view 
     @notes = get_notes
     begin
       @topic = @external_url.match(%r{.*/([^/]+)/?})[1]
@@ -34,6 +34,7 @@ class OverlayController < ApplicationController
   private
 
   def init
+    @focusID = params[:focusID] 
     @from_click = params[:from_click]
     @external_url = params[:external_url]
   end

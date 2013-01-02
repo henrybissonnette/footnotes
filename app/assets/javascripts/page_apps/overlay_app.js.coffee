@@ -1,12 +1,11 @@
 Footnotes.Overlay = 
 
   init: ->
-    # @questions = new Footnotes.Collections.Questions Footnotes.Overlay.notes
-    # @overlay = new Footnotes.Views.OverlayView
-    #   questions: @questions
-    # @overlay.render()
-    # $('#right_bar').load('/notes_for_url',{'external_url' : @external_url})
-    contents = $.get('/notes_for_url',{'external_url' : @getExternalURL()},
+    contents = $.get('/notes_for_url',
+      {
+        'external_url' : @getExternalURL(),
+        'focusID' : Footnotes.Overlay.focusID
+      },
       (response) => 
         $('#right_bar').html(response)
     )

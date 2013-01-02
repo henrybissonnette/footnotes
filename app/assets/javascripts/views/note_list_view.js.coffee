@@ -1,19 +1,20 @@
 Footnotes.Views.NoteListView = Backbone.View.extend
-
-  el: '.notes'
-
-  initialize: ->
-    @collection.on('add', @renderQuestions, @)
-    @collection.on('reset', @renderQuestions, @)
-
+  initialize: (options) ->
+    @focus = options.focus
+    @collection.on('sync', @render, @)
+    
   render: ->
+    if @focus
+      @notes = @collection.getChildren @focus
+    else
+      @notes = @collection.getTopNotes()
     @renderQuestions()
     return this
     # show spinner
 
   renderQuestions: ->  
     @$el.empty()
-    @collection.each (question) => 
+    @notes.each (question) => 
       view = new Footnotes.Views.QuestionView
             model: question
       @$el.append(view.render().el)
