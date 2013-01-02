@@ -39,12 +39,16 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
         $(this).siblings(".content").prepend(typeIndicator)
         $(this).show()
 
-  edit: ->
+  edit: (event) ->
+    event.stopPropagation()
+    @editting = true
     form = Footnotes.template('forms/questionFormTemplate').render(@context())
     @$el.html(form)
 
   delete: (event) ->
+    event.stopPropagation()
     event.preventDefault()
+    @editting = false
     if confirm("Permanently delete #{@model.get("title")}?")
       @model.destroy()
 
@@ -65,9 +69,11 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
 
   onClose: (event) ->
     event.preventDefault()
+    event.stopPropagation()
     @close()
 
-  close: (event)->   
+  close: (event)-> 
+    @editting = false  
     @render()
 
   submit: (event) ->
@@ -77,9 +83,10 @@ Footnotes.Views.QuestionView = class QuestionView extends Backbone.View
     @close()  
 
   viewFootnote: ->
-     @$el.trigger 
-       type: 'viewFootnote'
-       model: @model 
+    if @editting then return
+    @$el.trigger 
+      type: 'viewFootnote'
+      model: @model 
 
   onLinkClick: (event) ->
     event.stopPropagation()

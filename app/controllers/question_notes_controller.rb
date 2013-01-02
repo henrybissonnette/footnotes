@@ -17,14 +17,15 @@ class QuestionNotesController < ApplicationController
 
   def destroy
     id = params['id']
-    note = QuestionNote.find id
-    note.destroy
+    meta = MetaNote.find id
+    meta.note.destroy
     render text: 'destroyed'
   end
 
   def update
     id = params['id']
-    note = QuestionNote.find id
+    meta = MetaNote.find id
+    note = meta.note
     note.title = params['title']
     note.content = params['content']
     note.save
